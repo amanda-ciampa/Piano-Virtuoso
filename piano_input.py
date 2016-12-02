@@ -8,6 +8,7 @@ import pygame.midi
 import time
 import random
 import Image
+import turtle
 
 class Piano_Input:
 	def __init__(self):
@@ -109,16 +110,51 @@ class Spelling_Game:
 
 		return self.word
 
+	def spelling_game_main(self):
+		pass
+
 class Guess_The_Note:
 	def __init__(self):
 		self.note = ""
+		self.screen = turtle.Screen()
+		
+	def randomize_note(self):
+		self.note_num = random.randint(1, 7)
 
-	def display_image(self, image):
-		image = Image.open(image)
-		image.show()
+		note_rand = {
+		1 : 'C',
+		2 : 'D',
+		3 : 'E',
+		4 : 'F',
+		5 : 'G',
+		6 : 'A',
+		7 : 'B'
+		}
+
+		return note_rand[self.note_num]
+
+	def display_image(self, note):
+		picture = {
+		'C': 'C.png',
+		'D': 'D.png',
+		'E': 'E.png',
+		'F': 'F.png',
+		'G': 'G.png',
+		'A': 'A.png',
+		'B': 'B.png'
+		}
+
+		return picture[note]
+		
 
 if __name__ == '__main__':
-	print "Hi"
 	testing = Guess_The_Note()
+	print testing.randomize_note()
 
-	testing.display_image('dugtrio.png')
+	image = Image.open(testing.display_image(testing.randomize_note()))
+	image.show()
+
+	# while True:
+		
+	# 	testing.screen.setup(200, 200)
+	# 	testing.display_image(testing.randomize_note())
