@@ -31,11 +31,11 @@ python MainWindow.py
 
 ## Built With
 
-* [Python 2.7](https://www.python.org/)
+* [Python 2.7](https://www.python.org/) - Language used to code program
 
-* [pygame](http://www.pygame.org/hifi.html)
+* [pygame](http://www.pygame.org/hifi.html) & [Tkinter](https://wiki.python.org/moin/TkInter) - Libraries used for MIDI controller & GUI support
 
-* [Sublime Text 3](https://www.sublimetext.com/)
+* [Sublime Text 3](https://www.sublimetext.com/) - Text editor & compiler used to test/run code
 
 ## Authors
 
