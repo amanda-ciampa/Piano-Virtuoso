@@ -1,7 +1,5 @@
 # Piano Virtuoso
 
-## What is it?
-
 Piano Virtuoso is an education video game that teaches its players how to play piano and read music. Using lessons that increase in difficulty, the player is both challenged and engaged at all times. Each lesson features several mini games that cohere with a particular lesson to create a fun aspect while learning.
 
 Piano Virtuoso is designed for all ages; anyone who wishes to learn how to play piano can! All that is needed is a MIDI controller to start a musical journey.
@@ -18,11 +16,11 @@ These instructions will help install and run this program.
 
 A MIDI controller (USB piano keyboard) is needed to control and play the game. If no MIDI controller is available, this game CANNOT work. If on Windows, the MIDI controller driver must be installed. The driver varies depending on which brand MIDI controller is being used. 
 
-If needed, an affordable MIDI controller can be purchased [here](http://a.co/8TdnfLH)
+If needed, an affordable MIDI controller is the [midiplus AKM320 (32 keys)](http://a.co/8TdnfLH) at $35.
 
-A better quality MIDI controller can be purchased [here](http://a.co/6og8L8X)
+A better quality MIDI controller, [Akai Professional MPK Mini (25 keys)](http://a.co/6og8L8X) is available for $99.
 
-The same MIDI controller used to program this project is available [here](http://a.co/cFtrm0i)
+The same MIDI controller used to program this project is the [Novation Impulse (49 keys)](http://a.co/cFtrm0i).
 
 ### Installing & Running
 
@@ -32,8 +30,12 @@ python MainWindow.py
 ```
 
 ## Built With
-[Python 2.7](https://www.python.org/)
-[Sublime Text 3](https://www.sublimetext.com/)
+
+* [Python 2.7](https://www.python.org/)
+
+* [pygame](http://www.pygame.org/hifi.html)
+
+* [Sublime Text 3](https://www.sublimetext.com/)
 
 ## Authors
 
