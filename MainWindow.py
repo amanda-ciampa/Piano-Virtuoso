@@ -14,7 +14,7 @@ class MainWindow():
         """ Constructor that creates GUI. """
         self.window = Tkinter.Tk()  # Creates instance of tkinter GUI
         self.window.wm_title("Piano Virtuoso")  # Displays a string in title bar
-        self.window.iconbitmap("PVicon.ico")  # Displays icon in title bar
+        self.window.iconbitmap("images/icon/PVicon.ico")  # Displays icon in title bar
 
         # Creates pull down menu under FILE
         self.menubar = Tkinter.Menu(self.window)
@@ -26,7 +26,7 @@ class MainWindow():
         self.window.config(menu=self.menubar)  # Displays menu bar
 
         # Creates/reads in title image & buttons
-        self.img = ImageTk.PhotoImage(Image.open("pixelpiano2.png"))  # Reads in image file
+        self.img = ImageTk.PhotoImage(Image.open("images/title/pixelpiano2.png"))  # Reads in image file
         self.titlePanel = Tkinter.Label(self.window, image=self.img, height=410,
                                         width=410)  # Creates a new panel with image
         self.start = Tkinter.Button(self.window, text="Start", command=self.close_title_panel_and_display_main_menu,
@@ -62,7 +62,7 @@ class MainWindow():
         self.start.destroy()
         self.exit.destroy()
 
-        # self.img2 = ImageTk.PhotoImage(Image.open("dugtrio.png"))
+        # self.img2 = ImageTk.PhotoImage(Image.open("images/misc/dugtrio.png"))
         self.main_menu_panel = Tkinter.Label(self.window, bg="black", height=20, width=64)
         self.lesson1_panel = Tkinter.Label(self.window, bg="black", height=2, width=34, text="Lesson 1", fg="red",
                                            font=("Helvetica", 16, "bold"))

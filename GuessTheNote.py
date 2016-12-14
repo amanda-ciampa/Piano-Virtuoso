@@ -28,13 +28,13 @@ class GuessTheNote:
     @staticmethod
     def display_image(note):
         picture = {
-            'C': 'C.png',
-            'D': 'D.png',
-            'E': 'E.png',
-            'F': 'F.png',
-            'G': 'G.png',
-            'A': 'A.png',
-            'B': 'B.png'
+            'C': 'images/notes/C.png',
+            'D': 'images/notes/D.png',
+            'E': 'images/notes/E.png',
+            'F': 'images/notes/F.png',
+            'G': 'images/notes/G.png',
+            'A': 'images/notes/A.png',
+            'B': 'images/notes/B.png'
         }
 
         return picture[note]
