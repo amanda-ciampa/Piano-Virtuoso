@@ -48,46 +48,46 @@ if __name__ == "__main__":
 
                 spelling.win_or_lose(user_input_notes)
 
-                # i = 0  # Counter for list positions.
+                i = 0  # Counter for list positions.
 
-                # # If notes are correct.
-                # if user_input_notes == spelling.generated_word:
-                #     print 'CONGRATS!'
-                #     winsound.PlaySound('OOT_Song_Correct.wav', winsound.SND_FILENAME)
+                # Exits game if black key is pressed.
+                if '#' in user_input_notes[i]:
+                    spelling.generated_word = []
+                    spelling.user_input = []
+                    user_input_notes = []
+                    i = 0
+                    isTrue = False
 
-                #     # Clears out all previous input & generated words
-                #     spelling.generated_word = []
-                #     spelling.user_input = []
-                #     user_input_notes = []
+                # If notes are correct.
+                if user_input_notes == spelling.generated_word:
+                    print 'CONGRATS!'
+                    winsound.PlaySound('OOT_Song_Correct.wav', winsound.SND_FILENAME)
 
-                #     spelling.random_word_gen()
+                    # Clears out all previous input & generated words
+                    spelling.generated_word = []
+                    spelling.user_input = []
+                    user_input_notes = []
 
-                #     # Asks user to spell random word
-                #     print "Please spell the word: " + spelling.word
+                    spelling.random_word_gen()
 
-                #     continue
+                    # Asks user to spell random word
+                    print "Please spell the word: " + spelling.word
 
-                # # Exits game if black key is pressed.
-                # if '#' in user_input_notes[i]:
-                #     spelling.generated_word = []
-                #     spelling.user_input = []
-                #     user_input_notes = []
-                #     i = 0
-                #     isTrue = False
+                    continue
 
-                # # If user gets note wrong.
-                # elif user_input_notes[i] != spelling.generated_word[i]:
-                #     print 'WRONG!'
-                #     winsound.PlaySound('OOT_Song_Error.wav', winsound.SND_FILENAME)
+                # If user gets note wrong.
+                elif user_input_notes[i] != spelling.generated_word[i]:
+                    print 'WRONG!'
+                    winsound.PlaySound('OOT_Song_Error.wav', winsound.SND_FILENAME)
 
-                #     # Clears out all previous input
-                #     spelling.user_input = []
-                #     user_input_notes = []
-                #     i = 0
+                    # Clears out all previous input
+                    spelling.user_input = []
+                    user_input_notes = []
+                    i = 0
 
-                #     print "Try again!"
-                #     print "\n"
-                #     print "Please spell the word: " + spelling.word
+                    print "Try again!"
+                    print "\n"
+                    print "Please spell the word: " + spelling.word
 
-                # else:
-                #     i += 1
+                else:
+                    i += 1
