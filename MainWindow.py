@@ -104,15 +104,20 @@ class MainWindow():
         self.sheet_reading_button.destroy()
         self.spelling_button.destroy()
         self.guess_note_button.destroy()
+        self.main_menu_panel.destroy()
 
-        #self.text = Tkinter.Text(self.window.after(1), bg="black", fg="red", font="Helvetica")
+        self.key_loc = ImageTk.PhotoImage(Image.open('images/keyboard/keys.jpg'))  # Reads in image file
+        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=200,
+                                        width=430)  # Creates a new panel with
+        self.text.insert('insert', "On every keyboard, there are always the same 7 notes.\n\n"
+            "These 7 notes are known as an octave. Depending on the keyboard, there will be several octaves.\n\n"
+            "Each of these octaves always starts with the note, C. If you locate the black keys that are grouped into two,"
+            " the C key is always preceeding the first black note in that group. This will be helpful to locate not only C,"
+            " but every other note.\n\n"
+            "The picture you see is where each key is located in each octave. Study it for a while.")
 
-        self.text.insert('insert', "Hello! Welcome to the Piano Virtuoso tutorial.\n\nIn this lesson, we will focus on the piano keyboard.")
-        self.text.pack()
-
-        self.next1_button = Tkinter.Button(self.window, text="Next",
-                                                bd=5, fg="red", bg="black", height=1, width=6)
-        self.next1_button.pack()
+        self.keyboard.grid(row=1, column=1)
+        self.text.grid(row=2, column=1)
 
     def l1_basic_sheet_reading_func(self):
         """ Lesson 1: Basic Sheet Music
@@ -184,14 +189,6 @@ class MainWindow():
                     # text.insert('insert', "Please spell the word: " + self.word)
                     # text.pack()
                     self.text.insert('insert', "Please spell the word: " + spelling.word + '\n')
-
-                # # Exits game if black key is pressed.
-                # if '#' in user_input_notes[i]:
-                #     self.generated_word = []
-                #     self.user_input = []
-                #     user_input_notes = []
-                #     i = 0
-                #     isTrue = False
 
                 # If user gets note wrong.
                 elif user_input_notes[i] != spelling.generated_word[i]:
@@ -276,5 +273,4 @@ class MainWindow():
 
 if __name__ == '__main__':
     mw = MainWindow()
-   # mw.window.after(0, mw.spelling_func)
     mw.window.mainloop()
