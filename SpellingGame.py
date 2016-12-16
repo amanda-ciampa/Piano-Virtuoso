@@ -5,6 +5,8 @@
 # /____/_/   /_____/_____/_____/___/_/ |_/\____/   \____/_/  |_/_/  /_/_____/
 
 import pygame.midi
+import winsound
+import Tkinter
 import random
 
 class SpellingGame:
@@ -12,6 +14,8 @@ class SpellingGame:
         self.user_input = []
         self.generated_word = []
         self.word = ""
+
+        self.isTrue = True
 
     def word_split(self, word):
         pass
@@ -65,46 +69,48 @@ class SpellingGame:
         return self.word
 
     def win_or_lose(self, user_input_notes):
+        #text = Tkinter.Text(self.window, bg="black", fg="red", font="Helvetica")
+
         i = 0  # Counter for list positions.
 
         # If notes are correct.
-        if user_input_notes == spelling.generated_word:
+        if user_input_notes == self.generated_word:
             print 'CONGRATS!'
             winsound.PlaySound('sound/sfx/OOT_Song_Correct.wav', winsound.SND_FILENAME)
 
             # Clears out all previous input & generated words
-            spelling.generated_word = []
-            spelling.user_input = []
+            self.generated_word = []
+            self.user_input = []
             user_input_notes = []
 
-            spelling.random_word_gen()
+            self.random_word_gen()
 
             # Asks user to spell random word
-            print "Please spell the word: " + spelling.word
+            # text.insert('insert', "Please spell the word: " + self.word)
+            # text.pack()
+            print "Please spell the word: " + self.word
 
-            #continue
-
-        # Exits game if black key is pressed.
-        if '#' in user_input_notes[i]:
-            spelling.generated_word = []
-            spelling.user_input = []
-            user_input_notes = []
-            i = 0
-            isTrue = False
+        # # Exits game if black key is pressed.
+        # if '#' in user_input_notes[i]:
+        #     self.generated_word = []
+        #     self.user_input = []
+        #     user_input_notes = []
+        #     i = 0
+        #     isTrue = False
 
         # If user gets note wrong.
-        elif user_input_notes[i] != spelling.generated_word[i]:
+        elif user_input_notes[i] != self.generated_word[i]:
             print 'WRONG!'
             winsound.PlaySound('sound/sfx/OOT_Song_Error.wav', winsound.SND_FILENAME)
 
             # Clears out all previous input
-            spelling.user_input = []
+            self.user_input = []
             user_input_notes = []
             i = 0
 
             print "Try again!"
             print "\n"
-            print "Please spell the word: " + spelling.word
+            print "Please spell the word: " + self.word
 
         else:
             i += 1

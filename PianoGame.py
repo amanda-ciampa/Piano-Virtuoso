@@ -9,9 +9,6 @@ if __name__ == "__main__":
     piano = PianoInput()
     spelling = SpellingGame()
 
-    isTrue = True
-    isTrue2 = True
-
     # Generates random word from dict.
     spelling.random_word_gen()
 
@@ -20,7 +17,7 @@ if __name__ == "__main__":
 
     print spelling.generated_word
 
-    while isTrue:
+    while spelling.isTrue:
 
         piano.detect_key()
 
@@ -48,46 +45,4 @@ if __name__ == "__main__":
 
                 spelling.win_or_lose(user_input_notes)
 
-                i = 0  # Counter for list positions.
-
-                # Exits game if black key is pressed.
-                if '#' in user_input_notes[i]:
-                    spelling.generated_word = []
-                    spelling.user_input = []
-                    user_input_notes = []
-                    i = 0
-                    isTrue = False
-
-                # If notes are correct.
-                if user_input_notes == spelling.generated_word:
-                    print 'CONGRATS!'
-                    winsound.PlaySound('OOT_Song_Correct.wav', winsound.SND_FILENAME)
-
-                    # Clears out all previous input & generated words
-                    spelling.generated_word = []
-                    spelling.user_input = []
-                    user_input_notes = []
-
-                    spelling.random_word_gen()
-
-                    # Asks user to spell random word
-                    print "Please spell the word: " + spelling.word
-
-                    continue
-
-                # If user gets note wrong.
-                elif user_input_notes[i] != spelling.generated_word[i]:
-                    print 'WRONG!'
-                    winsound.PlaySound('OOT_Song_Error.wav', winsound.SND_FILENAME)
-
-                    # Clears out all previous input
-                    spelling.user_input = []
-                    user_input_notes = []
-                    i = 0
-
-                    print "Try again!"
-                    print "\n"
-                    print "Please spell the word: " + spelling.word
-
-                else:
-                    i += 1
+                continue

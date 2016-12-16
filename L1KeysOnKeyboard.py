@@ -7,29 +7,27 @@
 import Tkinter
 import tkMessageBox
 from PIL import ImageTk, Image
-#import MainWindow
+from MainWindow import MainWindow
 
 
 class L1KeysOnKeyboard(MainWindow):
-    # def __init__(self):
-    #     # self.window = Tkinter.Tk() # Creates instance of tkinter GUI
-    #     # self.window.wm_title("Piano Virtuoso") # Displays a string in title bar
-    #     # self.window.iconbitmap("PVicon.ico") # Displays icon in title bar
-    #     self.main = MainWindow.MainWindow()
+    #def __init__(self):
+        
 
     def display_l1(self):
+        MainWindow.__init__()
         # self.img2 = ImageTk.PhotoImage(Image.open("dugtrio.png"))
-        self.main_menu_panel = Tkinter.Label(self.main.window, bg="black", height=20, width=64)
-        self.lesson1_panel = Tkinter.Label(self.main.window, bg="black", height=2, width=34, text="Lesson 1", fg="red",
+        self.main_menu_panel = Tkinter.Label(self.window, bg="black", height=20, width=64)
+        self.lesson1_panel = Tkinter.Label(self.window, bg="black", height=2, width=34, text="Lesson 1", fg="red",
                                            font=("Helvetica", 16, "bold"))
-        self.spelling_button = Tkinter.Button(self.main.window, text="Spelling Game", command=self.spelling_func, bd=5,
+        self.spelling_button = Tkinter.Button(self.window, text="Spelling Game", command=self.spelling_func, bd=5,
                                               fg="red", bg="black", height=1, width=12)
-        self.guess_note_button = Tkinter.Button(self.main.window, text="Guess The Note", command=self.guess_note_func,
+        self.guess_note_button = Tkinter.Button(self.window, text="Guess The Note", command=self.guess_note_func,
                                                 bd=5, fg="red", bg="black", height=1, width=12)
-        self.key_keyboard_button = Tkinter.Button(self.main.window, text="Keys on Keyboard",
+        self.key_keyboard_button = Tkinter.Button(self.window, text="Keys on Keyboard",
                                                   command=self.l1_key_on_keyboard_func, bd=5, fg="red", bg="black",
                                                   height=1, width=13)
-        self.sheet_reading_button = Tkinter.Button(self.main.window, text="Sheet Reading",
+        self.sheet_reading_button = Tkinter.Button(self.window, text="Sheet Reading",
                                                    command=self.l1_basic_sheet_reading_func, bd=5, fg="red", bg="black",
                                                    height=1, width=12)
 
