@@ -12,6 +12,7 @@ from GuessTheNote import GuessTheNote
 
 piano = PianoInput()
 spelling = SpellingGame()
+guess = GuessTheNote()
 
 class MainWindow():
     def __init__(self):
@@ -44,7 +45,8 @@ class MainWindow():
         self.start.pack(side="right", padx=30, pady=10)
         self.exit.pack(side="left", padx=30, pady=10)
 
-        self.text = Tkinter.Text(self.window, bg="black", fg="red", font="Helvetica")
+        # Creates text variable to use.
+        self.text = Tkinter.Text(self.window, bg="black", fg="red", font="Helvetica", height=20, width=60)
 
     def restart_game(self):
         """ Restarts Piano Virtuoso. """
@@ -146,11 +148,6 @@ class MainWindow():
         if piano.piano_key == [] or piano.piano_key[0][0][0] == 128:
             pass
         else:
-            #Prints the note pressed.
-            #self.text.insert('insert', piano.display_note(piano.piano_key[0][0][1]))
-            # self.text.insert('insert', spelling.generated_word)
-            # self.text.grid(row=2, column=2)
-
             print piano.display_note(piano.piano_key[0][0][1])
 
             spelling.user_input = spelling.input_to_list(piano.piano_key[0][0][1])
@@ -164,13 +161,12 @@ class MainWindow():
                 parsed_note = piano.parse_key(temp_key)
 
                 user_input_notes.append(parsed_note)
-                #print "user input notes"
             
                 #spelling.win_or_lose(user_input_notes)
 
                 i = 0  # Counter for list positions.
                 #user_str = ''.join(user_input_notes)
-                self.text.insert('insert', parsed_note)
+                #self.text.insert('insert', parsed_note)
 
                 # If notes are correct.
                 if user_input_notes == spelling.generated_word:
@@ -226,6 +222,57 @@ class MainWindow():
         self.sheet_reading_button.destroy()
         self.spelling_button.destroy()
         self.guess_note_button.destroy()
+        self.main_menu_panel.destroy()
+
+        # Generates random note.
+        self.rand_gen_note = guess.randomize_note()
+
+        # Sets random note equal to its following image.
+        self.rand_note_image = guess.display_image(self.rand_gen_note)
+        self.note_image = ImageTk.PhotoImage(Image.open(self.rand_note_image))  # Reads in image file
+        self.guess_note_label = Tkinter.Label(self.window, image=self.note_image, bg="black", height=100,
+                                        width=100)  # Creates a new panel with
+        self.text.insert('insert', "Press what note this is on the piano keyboard.")
+
+        self.guess_note_label.grid(row=1, column=1)
+        self.text.grid()
+
+        self.guess_note_loop()
+
+    def guess_note_loop(self):
+        piano.detect_key()
+        if piano.piano_key == [] or piano.piano_key[0][0][0] == 128:
+            pass
+        else:
+            # Puts user input into variable, then prints note with no numbers attached.
+            temp_key = piano.display_note(piano.piano_key[0][0][1])
+            guess.note = piano.parse_key(temp_key)
+            print guess.note
+            print self.rand_gen_note
+
+            # If the user input note is equal to randomized note
+            if guess.note == self.rand_gen_note.lower():
+                self.text.insert('insert', '\nCORRECT!')
+                winsound.PlaySound('sound/sfx/OOT_Song_Correct.wav', winsound.SND_FILENAME)
+
+                # Generates random note.
+                self.rand_gen_note = guess.randomize_note()
+
+                # Sets random note equal to its following image.
+                self.rand_note_image = guess.display_image(self.rand_gen_note)
+                self.note_image = ImageTk.PhotoImage(Image.open(self.rand_note_image))  # Reads in image file
+                self.guess_note_label = Tkinter.Label(self.window, image=self.note_image, bg="black", height=100,
+                                                width=100)  # Creates a new panel with
+                self.text.insert('insert', "Press what note this is on the piano keyboard.")
+            # If note is wrong
+            else:
+                self.text.insert('insert', '\nWRONG!\n')
+                winsound.PlaySound('sound/sfx/OOT_Song_Error.wav', winsound.SND_FILENAME)
+
+                self.text.insert('insert', "Try again!\n")
+        self.guess_note_label.grid(row=1, column=1)
+        self.text.grid(row=2, column=2)
+        self.window.after(1, self.guess_note_loop)
 
 if __name__ == '__main__':
     mw = MainWindow()
