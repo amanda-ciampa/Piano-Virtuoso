@@ -197,8 +197,6 @@ class MainWindow():
                     spelling.random_word_gen()
 
                     # Asks user to spell random word
-                    # text.insert('insert', "Please spell the word: " + self.word)
-                    # text.pack()
                     self.text.insert('insert', "Please spell the word: " + spelling.word + '\n')
 
                 # If user gets note wrong.
@@ -216,7 +214,7 @@ class MainWindow():
 
                 else:
                     i = i + 1
-                    
+
         self.text.grid(row=2, column=2)
         self.window.after(1, self.spelling_loop)
 
