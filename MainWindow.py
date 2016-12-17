@@ -184,8 +184,13 @@ class MainWindow():
 
                 i = 0  # Counter for list positions.
 
+                # Converts both lists to strings for easy comparison
+                user_str = ''.join(user_input_notes)
+                gen_str = ''.join(spelling.generated_word)
+
                 # If notes are correct.
                 if user_input_notes == spelling.generated_word:
+                #if user_str == gen_str:
                     self.text.insert('insert', '\nCONGRATS!\n')
                     winsound.PlaySound('sound/sfx/OOT_Song_Correct.wav', winsound.SND_FILENAME)
 
@@ -200,7 +205,7 @@ class MainWindow():
                     self.text.insert('insert', "Please spell the word: " + spelling.word + '\n')
 
                 # If user gets note wrong.
-                elif user_input_notes[i] != spelling.generated_word[i]:
+                elif (len(user_str) == len(gen_str)) and (user_str != gen_str):
                     self.text.insert('insert', '\nWRONG!')
                     winsound.PlaySound('sound/sfx/OOT_Song_Error.wav', winsound.SND_FILENAME)
 
