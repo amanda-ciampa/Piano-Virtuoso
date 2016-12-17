@@ -127,6 +127,19 @@ class MainWindow():
         self.sheet_reading_button.destroy()
         self.spelling_button.destroy()
         self.guess_note_button.destroy()
+        self.main_menu_panel.destroy()
+
+        self.sheet_music = ImageTk.PhotoImage(Image.open('images/notes/treble.png'))
+        self.staff = Tkinter.Label(self.window, image=self.sheet_music, bg="black", height=80, width=520)
+        self.text.insert('insert', "This image here is of the treble clef. The treble clef is played by your RIGHT \nhand.\n\n"
+            "The bass clef is played with your left hand, but let's just focus on the right for \nnow!\n\n"
+            "An easy way to remember all the notes is by following this nifty trick:\n"
+            "All the notes on the SPACES spell out FACE from the bottom up.\n"
+            "All the notes on the LINES can be remembered by the sentence Every Good \nBoy Deserves Fudge. EGBDF\n\n"
+            "The middle C note ALWAYS is the note with a line through the middle. This is \nthe middle of the piano.")
+
+        self.staff.grid(row=1, column=1)
+        self.text.grid(row=2, column=1)
 
     def spelling_func(self):
         """ Lesson 1: Spelling Game
@@ -170,8 +183,6 @@ class MainWindow():
                 #spelling.win_or_lose(user_input_notes)
 
                 i = 0  # Counter for list positions.
-                #user_str = ''.join(user_input_notes)
-                #self.text.insert('insert', parsed_note)
 
                 # If notes are correct.
                 if user_input_notes == spelling.generated_word:
@@ -206,7 +217,6 @@ class MainWindow():
                 else:
                     i = i + 1
                     
-
         self.text.grid(row=2, column=2)
         self.window.after(1, self.spelling_loop)
 
