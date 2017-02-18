@@ -34,7 +34,7 @@ class MainWindow():
         # Creates pull down menu under LESSONS
         self.lessonmenu = Tkinter.Menu(self.menubar, tearoff=0)
         self.lessonmenu.add_command(label="Lesson 1", command=self.main_menu)
-        self.lessonmenu.add_command(label="Lesson 2", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 2", command=self.l2_main_menu)
         self.lessonmenu.add_command(label="Lesson 3", command=self.main_menu)
         self.lessonmenu.add_command(label="Lesson 4", command=self.main_menu)
         self.lessonmenu.add_command(label="Lesson 5", command=self.main_menu)
@@ -119,21 +119,29 @@ class MainWindow():
 
         # Destorys other GUI modules
         self.lesson1_panel.destroy()
+        self.lesson1_sub.destroy()
         self.chapter1.destroy()
         self.chapter2.destroy()
+        self.logo.destroy()
 
-        self.key_loc = ImageTk.PhotoImage(Image.open('images/keyboard/keys.jpg'))  # Reads in image file
-        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=200,
-                                        width=430)  # Creates a new panel with
-        self.text.insert('insert', "On every keyboard, there are always the same 7 notes.\n\n"
-            "These 7 notes are known as an octave. Depending on the keyboard, there will be several octaves.\n\n"
-            "Each of these octaves always starts with the note, C. If you locate the black keys that are grouped into two,"
-            " the C key is always preceeding the first black note in that group. This will be helpful to locate not only C,"
-            " but every other note.\n\n"
-            "The picture you see is where each key is located in each octave. Study it for a while before moving on to the mini-game.")
+        self.key_loc = ImageTk.PhotoImage(Image.open('images/keyboard/lettered_keyboard.png'))  # Reads in image file
+        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=410, width=410)  # Creates a new panel with
+        # self.text.insert('insert', "On every keyboard, there are always the same 7 notes.\n\n"
+        #     "These 7 notes are known as an octave. Depending on the keyboard, there will be several octaves.\n\n"
+        #     "Each of these octaves always starts with the note, C. If you locate the black keys that are grouped into two,"
+        #     " the C key is always preceeding the first black note in that group. This will be helpful to locate not only C,"
+        #     " but every other note.\n\n"
+        #     "The picture you see is where each key is located in each octave. Study it for a while before moving on to the mini-game.")
 
-        self.keyboard.grid(row=1, column=1)
-        self.text.grid(row=2, column=1)
+        self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/1.png'))
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/2.png'))
+
+        self.text1 = Tkinter.Label(self.window, image=self.img1, bg="black", height=23, width=410)
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=23, width=410)
+
+        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=10)
+        self.text1.grid(row=9, column=1)
+        self.text2.grid(row=10, column=1)
 
     def l1_chapter2(self):
         """ Lesson 1: Basic Sheet Music
@@ -296,6 +304,9 @@ class MainWindow():
         self.guess_note_label.grid(row=1, column=1)
         self.text.grid(row=2, column=2)
         self.window.after(1, self.guess_note_loop)
+
+    def l2_main_menu(self):
+        pass
 
 if __name__ == '__main__':
     mw = MainWindow()
