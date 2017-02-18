@@ -14,6 +14,8 @@ piano = PianoInput()
 spelling = SpellingGame()
 guess = GuessTheNote()
 
+global l1
+
 class MainWindow():
     def __init__(self):
         """ Constructor that creates GUI. """
@@ -28,22 +30,31 @@ class MainWindow():
         self.filemenu.add_command(label="Reset", command=self.restart_game)
         self.filemenu.add_command(label="Exit", command=self.exit_game)
         self.menubar.add_cascade(label="File", menu=self.filemenu)
+
+        # Creates pull down menu under LESSONS
+        self.lessonmenu = Tkinter.Menu(self.menubar, tearoff=0)
+        self.lessonmenu.add_command(label="Lesson 1", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 2", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 3", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 4", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 5", command=self.main_menu)
+        self.menubar.add_cascade(label="Lessons", menu=self.lessonmenu)
         self.window.config(menu=self.menubar)  # Displays menu bar
 
-        # Creates/reads in title image & buttons
+        # Creates/reads in title images
         self.img = ImageTk.PhotoImage(Image.open("images/title/pixelpiano2.png"))  # Reads in image file
-        self.titlePanel = Tkinter.Label(self.window, image=self.img, height=410,
-                                        width=410)  # Creates a new panel with image
-        self.start = Tkinter.Button(self.window, text="Start", command=self.close_title_panel_and_display_main_menu,
-                                    bd=5, height=1, fg="red", bg="black",
-                                    width=8)  # Uses instance of Tkinter created. Creates a button with text 'hello'. When pressed, performs the close_title_panel func.
-        self.exit = Tkinter.Button(self.window, text="Exit", command=self.exit_game, bd=5, fg="red", bg="black",
-                                   height=1, width=8)
+        self.start_text = ImageTk.PhotoImage(Image.open("images/buttons/start.png"))
+        self.exit_text = ImageTk.PhotoImage(Image.open("images/buttons/exit.png"))
+
+        # Creates buttons & title panel.
+        self.titlePanel = Tkinter.Label(self.window, bg="black", image=self.img, height=410, width=410)  # Creates a new panel with image
+        self.start = Tkinter.Button(self.window, image=self.start_text, command=self.main_menu, bd=0, height=25, bg = "black", width=80)
+        self.exit = Tkinter.Button(self.window, image=self.exit_text, command=self.exit_game, bd=0, height=25, width=80, bg = "black")
 
         # Displays title image & buttons.
-        self.titlePanel.pack()
-        self.start.pack(side="right", padx=30, pady=10)
-        self.exit.pack(side="left", padx=30, pady=10)
+        self.titlePanel.grid(row = 0, column = 2, rowspan = 6, columnspan = 4)
+        self.start.grid(row = 5, column = 5)
+        self.exit.grid(row = 5, column = 2)
 
         # Creates text variable to use.
         self.text = Tkinter.Text(self.window, bg="black", fg="red", font="Helvetica", height=20, width=60)
@@ -64,7 +75,7 @@ class MainWindow():
                                                       "Created by Amanda Ciampa\n\n"
                                                       "An educational video game that helps how to learn \nto play piano and read music.")
 
-    def close_title_panel_and_display_main_menu(self):
+    def main_menu(self):
         """ Closes title menu & displays the main menu of lesson 1. """
         self.titlePanel.destroy()
         self.start.destroy()
@@ -72,39 +83,44 @@ class MainWindow():
 
         #l1 = L1KeysOnKeyboard.L1KeysOnKeyboard(self)
 
-        self.img2 = ImageTk.PhotoImage(Image.open("images/misc/dugtrio.png"))
-        self.main_menu_panel = Tkinter.Label(self.window, bg="black", height=20, width=64)
-        self.lesson1_panel = Tkinter.Label(self.window, bg="black", height=2, width=34, text="Lesson 1", fg="red",
-                                           font=("Helvetica", 16, "bold"))
+        # Image variables
+        self.lesson1_header = ImageTk.PhotoImage(Image.open("images/headers/lesson1.png"))
+        self.lesson1_subhead = ImageTk.PhotoImage(Image.open("images/headers/lesson1a.png"))
+        self.chapter1_text = ImageTk.PhotoImage(Image.open("images/buttons/l1c1.png"))
+        self.chapter2_text = ImageTk.PhotoImage(Image.open("images/buttons/l1c2.png"))
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+
+        # Lesson 1 panel
+        self.lesson1_panel = Tkinter.Label(self.window, bg="black", image=self.lesson1_header, height=410, width=410)
+        self.lesson1_sub = Tkinter.Label(self.window, bg="black", image=self.lesson1_subhead, height=25, width=150)
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        # Lesson 1 Buttons Initialization
         self.spelling_button = Tkinter.Button(self.window, text="Spelling Game", command=self.spelling_func, bd=5,
                                               fg="red", bg="black", height=1, width=12)
         self.guess_note_button = Tkinter.Button(self.window, text="Guess The Note", command=self.guess_note_func,
                                                 bd=5, fg="red", bg="black", height=1, width=12)
-        self.key_keyboard_button = Tkinter.Button(self.window, text="Keys on Keyboard",
-                                                  command=self.l1_key_on_keyboard_func, bd=5, fg="red", bg="black",
-                                                  height=1, width=13)
-        self.sheet_reading_button = Tkinter.Button(self.window, text="Sheet Reading",
-                                                   command=self.l1_basic_sheet_reading_func, bd=5, fg="red", bg="black",
-                                                   height=1, width=12)
 
-        self.lesson1_panel.grid(row=1, column=0, columnspan=5)
-        self.main_menu_panel.grid(row=1, column=0, columnspan=5, rowspan=4)
+        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l1_chapter1, bd=0, bg="black", height=25, width=100)
+        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l1_chapter2, bd=0, bg="black", height=25, width=100)
 
-        self.key_keyboard_button.grid(row=2, column=1)
-        self.sheet_reading_button.grid(row=3, column=1)
+        self.lesson1_panel.grid(row=0, column=0, columnspan=5, rowspan=10)
+        self.lesson1_sub.grid(row=6, column=2)
+        self.chapter1.grid(row=7, column=0)
+        self.chapter2.grid(row=7, column=1)
+        self.logo.grid(row=0, column=0)
 
-        self.spelling_button.grid(row=2, column=3)
-        self.guess_note_button.grid(row=3, column=3)
+        #self.spelling_button.grid(row=2, column=3)
+        #self.guess_note_button.grid(row=3, column=3)
 
-    def l1_key_on_keyboard_func(self):
+    def l1_chapter1(self):
         """ Lesson 1: Keys on Piano Keyboard
 			LESSON that teaches what the keys on a keyboard are."""
+
+        # Destorys other GUI modules
         self.lesson1_panel.destroy()
-        self.key_keyboard_button.destroy()
-        self.sheet_reading_button.destroy()
-        self.spelling_button.destroy()
-        self.guess_note_button.destroy()
-        self.main_menu_panel.destroy()
+        self.chapter1.destroy()
+        self.chapter2.destroy()
 
         self.key_loc = ImageTk.PhotoImage(Image.open('images/keyboard/keys.jpg'))  # Reads in image file
         self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=200,
@@ -114,20 +130,17 @@ class MainWindow():
             "Each of these octaves always starts with the note, C. If you locate the black keys that are grouped into two,"
             " the C key is always preceeding the first black note in that group. This will be helpful to locate not only C,"
             " but every other note.\n\n"
-            "The picture you see is where each key is located in each octave. Study it for a while.")
+            "The picture you see is where each key is located in each octave. Study it for a while before moving on to the mini-game.")
 
         self.keyboard.grid(row=1, column=1)
         self.text.grid(row=2, column=1)
 
-    def l1_basic_sheet_reading_func(self):
+    def l1_chapter2(self):
         """ Lesson 1: Basic Sheet Music
 			LESSON that teaches how to read basic sheet music on a Treble clef."""
         self.lesson1_panel.destroy()
-        self.key_keyboard_button.destroy()
-        self.sheet_reading_button.destroy()
-        self.spelling_button.destroy()
-        self.guess_note_button.destroy()
-        self.main_menu_panel.destroy()
+        self.chapter1.destroy()
+        self.chapter2.destroy()
 
         self.sheet_music = ImageTk.PhotoImage(Image.open('images/notes/treble.png'))
         self.staff = Tkinter.Label(self.window, image=self.sheet_music, bg="black", height=80, width=520)
