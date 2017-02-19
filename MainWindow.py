@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import pygame
 import Tkinter
 import winsound
 import tkMessageBox
@@ -96,11 +97,6 @@ class MainWindow():
         self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
 
         # Lesson 1 Buttons Initialization
-        self.spelling_button = Tkinter.Button(self.window, text="Spelling Game", command=self.spelling_func, bd=5,
-                                              fg="red", bg="black", height=1, width=12)
-        self.guess_note_button = Tkinter.Button(self.window, text="Guess The Note", command=self.guess_note_func,
-                                                bd=5, fg="red", bg="black", height=1, width=12)
-
         self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l1_chapter1, bd=0, bg="black", height=25, width=100)
         self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l1_chapter2, bd=0, bg="black", height=25, width=100)
 
@@ -109,9 +105,6 @@ class MainWindow():
         self.chapter1.grid(row=7, column=0)
         self.chapter2.grid(row=7, column=1)
         self.logo.grid(row=0, column=0)
-
-        #self.spelling_button.grid(row=2, column=3)
-        #self.guess_note_button.grid(row=3, column=3)
 
     def l1_chapter1(self):
         """ Lesson 1: Keys on Piano Keyboard
@@ -124,24 +117,99 @@ class MainWindow():
         self.chapter2.destroy()
         self.logo.destroy()
 
-        self.key_loc = ImageTk.PhotoImage(Image.open('images/keyboard/lettered_keyboard.png'))  # Reads in image file
-        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=410, width=410)  # Creates a new panel with
-        # self.text.insert('insert', "On every keyboard, there are always the same 7 notes.\n\n"
-        #     "These 7 notes are known as an octave. Depending on the keyboard, there will be several octaves.\n\n"
-        #     "Each of these octaves always starts with the note, C. If you locate the black keys that are grouped into two,"
-        #     " the C key is always preceeding the first black note in that group. This will be helpful to locate not only C,"
-        #     " but every other note.\n\n"
-        #     "The picture you see is where each key is located in each octave. Study it for a while before moving on to the mini-game.")
+        # Keyboard diagram
+        self.key_loc = ImageTk.PhotoImage(Image.open('images/keyboard/lettered_keyboard.png')) 
+        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=410, width=410) 
 
-        self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/1.png'))
-        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/2.png'))
+        # Text
+        self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/txt1.png'))
+        self.text1 = Tkinter.Label(self.window, image=self.img1, bg="black", height=50, width=410)
 
-        self.text1 = Tkinter.Label(self.window, image=self.img1, bg="black", height=23, width=410)
-        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=23, width=410)
+        # Piano Virtuoso logo
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
 
-        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=10)
-        self.text1.grid(row=9, column=1)
-        self.text2.grid(row=10, column=1)
+        # Next button
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter1_next1)
+
+        # Maps modules to GUI
+        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text1.grid(row=13, column=1)
+        self.logo.grid(row=0, column=1)
+        self.next_bttn.grid(row=14, column=1)
+
+    def l1_chapter1_next1(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/txt2.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter1_next2)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)
+
+    def l1_chapter1_next2(self):
+        self.text2.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img3 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/txt3.png'))
+        self.text3 = Tkinter.Label(self.window, image=self.img3, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter1_next3)
+
+        self.text3.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)
+
+    def l1_chapter1_next3(self):
+        self.text3.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img4 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/txt4.png'))
+        self.text4 = Tkinter.Label(self.window, image=self.img4, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter1_next4)
+
+        self.text4.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)
+
+    def l1_chapter1_next4(self):
+        self.text4.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img5 = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/txt5.png'))
+        self.text5 = Tkinter.Label(self.window, image=self.img5, bg="black", height=80, width=410)
+
+        self.spellingkee_txt = ImageTk.PhotoImage(Image.open('images/buttons/spelling_kee.png'))
+        self.spellingkee_bttn = Tkinter.Button(self.window, image=self.spellingkee_txt, bd=0, bg="black", height=25, width=100, command=self.spelling_func)
+
+        self.text5.grid(row=13, column=1)
+        self.spellingkee_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)
 
     def l1_chapter2(self):
         """ Lesson 1: Basic Sheet Music
@@ -165,13 +233,10 @@ class MainWindow():
     def spelling_func(self):
         """ Lesson 1: Spelling Game
 			MINI GAME that generates a random word & asks user to spell it out using piano keyboard."""
-        self.lesson1_panel.destroy()
-        self.main_menu_panel.destroy()
-        self.key_keyboard_button.destroy()
-        self.sheet_reading_button.destroy()
-        self.spelling_button.destroy()
-        self.guess_note_button.destroy()
-
+        self.text5.destroy()
+        self.spellingkee_bttn.destroy()
+        self.logo.destroy()
+        self.keyboard.destroy()
         # Generates random word from dict.
         spelling.random_word_gen()
 
@@ -306,7 +371,34 @@ class MainWindow():
         self.window.after(1, self.guess_note_loop)
 
     def l2_main_menu(self):
-        pass
+        """ Displays the main menu of lesson 2. """
+        self.titlePanel.destroy()
+        self.start.destroy()
+        self.exit.destroy()
+
+        #l1 = L1KeysOnKeyboard.L1KeysOnKeyboard(self)
+
+        # Image variables
+        self.lesson2_header = ImageTk.PhotoImage(Image.open("images/headers/lesson2.png"))
+        self.lesson2_subhead = ImageTk.PhotoImage(Image.open("images/headers/lesson2a.png"))
+        self.chapter1_text = ImageTk.PhotoImage(Image.open("images/buttons/l1c1.png"))
+        self.chapter2_text = ImageTk.PhotoImage(Image.open("images/buttons/l1c2.png"))
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+
+        # Lesson 2 panel
+        self.lesson2_panel = Tkinter.Label(self.window, bg="black", image=self.lesson2_header, height=410, width=410)
+        self.lesson2_sub = Tkinter.Label(self.window, bg="black", image=self.lesson2_subhead, height=25, width=255)
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        # Lesson 1 Buttons Initialization
+        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l1_chapter1, bd=0, bg="black", height=25, width=100)
+        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l1_chapter2, bd=0, bg="black", height=25, width=100)
+
+        self.lesson2_panel.grid(row=0, column=0, columnspan=5, rowspan=10)
+        self.lesson2_sub.grid(row=6, column=1)
+        self.chapter1.grid(row=7, column=0)
+        self.chapter2.grid(row=7, column=1)
+        self.logo.grid(row=0, column=0)
 
 if __name__ == '__main__':
     mw = MainWindow()
