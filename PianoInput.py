@@ -25,7 +25,7 @@ class PianoInput:
         self.piano_key = self.midi.read(1)
         return self.piano_key
 
-    def play_note(self):
+    def play_note(self, ):
         pass
 
     @staticmethod

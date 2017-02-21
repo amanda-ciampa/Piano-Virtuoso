@@ -34,8 +34,8 @@ class MainWindow():
 
         # Creates pull down menu under LESSONS
         self.lessonmenu = Tkinter.Menu(self.menubar, tearoff=0)
-        self.lessonmenu.add_command(label="Lesson 1", command=self.main_menu)
-        self.lessonmenu.add_command(label="Lesson 2", command=self.l2_main_menu)
+        self.lessonmenu.add_command(label="Lesson 1 - Keys & Notes", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 2 - C & Chromatic Scales", command=self.l2_main_menu)
         self.lessonmenu.add_command(label="Lesson 3", command=self.main_menu)
         self.lessonmenu.add_command(label="Lesson 4", command=self.main_menu)
         self.lessonmenu.add_command(label="Lesson 5", command=self.main_menu)
@@ -211,39 +211,34 @@ class MainWindow():
         self.spellingkee_bttn.grid(row=14, column=1)
         self.logo.grid(row=0, column=1)
 
-    def l1_chapter2(self):
-        """ Lesson 1: Basic Sheet Music
-			LESSON that teaches how to read basic sheet music on a Treble clef."""
-        self.lesson1_panel.destroy()
-        self.chapter1.destroy()
-        self.chapter2.destroy()
-
-        self.sheet_music = ImageTk.PhotoImage(Image.open('images/notes/treble.png'))
-        self.staff = Tkinter.Label(self.window, image=self.sheet_music, bg="black", height=80, width=520)
-        self.text.insert('insert', "This image here is of the treble clef. The treble clef is played by your RIGHT \nhand.\n\n"
-            "The bass clef is played with your left hand, but let's just focus on the right for \nnow!\n\n"
-            "An easy way to remember all the notes is by following this nifty trick:\n"
-            "All the notes on the SPACES spell out FACE from the bottom up.\n"
-            "All the notes on the LINES can be remembered by the sentence Every Good \nBoy Deserves Fudge. EGBDF\n\n"
-            "The middle C note ALWAYS is the note with a line through the middle. This is \nthe middle of the piano.")
-
-        self.staff.grid(row=1, column=1)
-        self.text.grid(row=2, column=1)
-
     def spelling_func(self):
         """ Lesson 1: Spelling Game
-			MINI GAME that generates a random word & asks user to spell it out using piano keyboard."""
+            MINI GAME that generates a random word & asks user to spell it out using piano keyboard."""
         self.text5.destroy()
         self.spellingkee_bttn.destroy()
         self.logo.destroy()
         self.keyboard.destroy()
+
         # Generates random word from dict.
         spelling.random_word_gen()
 
-        # Asks user to spell random word
-        self.text.insert('insert', "Please spell the word: " + spelling.word + "\n")
-        self.text.pack()
+        self.spelling_image = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/Spelling_Kee/' + spelling.word + '.png')) 
+        self.spelling_word = Tkinter.Label(self.window, image=self.spelling_image, bg="black", height=410, width=410)
 
+        self.stext = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/Spelling_Kee/spell_word.png'))
+        self.spell_text = Tkinter.Label(self.window, image=self.stext, bg="black", height=25, width=250)
+
+        self.back_txt = ImageTk.PhotoImage(Image.open("images/buttons/back.png"))
+        self.back = Tkinter.Button(self.window, image=self.back_txt, command=self.main_menu, bd=0, bg="black", height=25, width=100)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.spelling_word.grid(row=0, column=0, columnspan=4, rowspan=10)
+        self.logo.grid(row=0, column=1)
+        self.spell_text.grid(row=3, column = 1)
+        self.back.grid(row=9, column=0)
+        
         self.spelling_loop()
 
     def spelling_loop(self):
@@ -284,11 +279,19 @@ class MainWindow():
                     spelling.generated_word = []
                     spelling.user_input = []
                     user_input_notes = []
+                    self.spelling_word.destroy()
+                    self.spell_text.destroy()
 
                     spelling.random_word_gen()
 
-                    # Asks user to spell random word
-                    self.text.insert('insert', "Please spell the word: " + spelling.word + '\n')
+                    self.spelling_image = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/Spelling_Kee/' + spelling.word + '.png')) 
+                    self.spelling_word = Tkinter.Label(self.window, image=self.spelling_image, bg="black", height=410, width=410)
+
+                    self.stext = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/Spelling_Kee/spell_word.png'))
+                    self.spell_text1 = Tkinter.Label(self.window, image=self.stext, bg="black", height=25, width=250)
+
+                    self.spelling_word.grid(row=0, column=0, columnspan=5, rowspan=15)
+                    self.spell_text1.grid(row=3, column = 1)
 
                 # If user gets note wrong.
                 elif (len(user_str) == len(gen_str)) and (user_str != gen_str):
@@ -300,14 +303,39 @@ class MainWindow():
                     user_input_notes = []
                     i = 0
 
-                    self.text.insert('insert', "\nTry again!\n")
-                    self.text.insert('insert', "Please spell the word: " + spelling.word + '\n')
+                    self.spelling_image = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/Spelling_Kee/' + spelling.word + '.png')) 
+                    self.spelling_word = Tkinter.Label(self.window, image=self.spelling_image, bg="black", height=410, width=410)
+
+                    self.try_text = ImageTk.PhotoImage(Image.open('images/text/lesson1_chapter1/Spelling_Kee/try_again.png'))
+                    self.try_again = Tkinter.Label(self.window, image=self.try_text, bg="black", height=25, width=100)
+
+                    self.spelling_word.grid(row=0, column=0, columnspan=2, rowspan=15)
+                    self.try_again.grid(row=3, column=1)
 
                 else:
                     i = i + 1
 
-        self.text.grid(row=2, column=2)
+        #self.text.grid(row=2, column=2)
         self.window.after(1, self.spelling_loop)
+
+    def l1_chapter2(self):
+        """ Lesson 1: Basic Sheet Music
+			LESSON that teaches how to read basic sheet music on a Treble clef."""
+        self.lesson1_panel.destroy()
+        self.chapter1.destroy()
+        self.chapter2.destroy()
+
+        self.sheet_music = ImageTk.PhotoImage(Image.open('images/notes/treble.png'))
+        self.staff = Tkinter.Label(self.window, image=self.sheet_music, bg="black", height=80, width=520)
+        self.text.insert('insert', "This image here is of the treble clef. The treble clef is played by your RIGHT \nhand.\n\n"
+            "The bass clef is played with your left hand, but let's just focus on the right for \nnow!\n\n"
+            "An easy way to remember all the notes is by following this nifty trick:\n"
+            "All the notes on the SPACES spell out FACE from the bottom up.\n"
+            "All the notes on the LINES can be remembered by the sentence Every Good \nBoy Deserves Fudge. EGBDF\n\n"
+            "The middle C note ALWAYS is the note with a line through the middle. This is \nthe middle of the piano.")
+
+        self.staff.grid(row=1, column=1)
+        self.text.grid(row=2, column=1)
 
     def guess_note_func(self):
         """ Lesson 1: Guess The Note
