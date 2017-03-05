@@ -99,6 +99,7 @@ class MainWindow():
         # Lesson 1 Buttons Initialization
         self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l1_chapter1, bd=0, bg="black", height=25, width=100)
         self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l1_chapter2, bd=0, bg="black", height=25, width=100)
+        # change command to command=self.l1_chapter2
 
         self.lesson1_panel.grid(row=0, column=0, columnspan=5, rowspan=10)
         self.lesson1_sub.grid(row=6, column=2)
@@ -324,29 +325,125 @@ class MainWindow():
         self.lesson1_panel.destroy()
         self.chapter1.destroy()
         self.chapter2.destroy()
+        self.lesson1_sub.destroy()
+        self.logo.destroy()
 
         self.sheet_music = ImageTk.PhotoImage(Image.open('images/notes/treble.png'))
-        self.staff = Tkinter.Label(self.window, image=self.sheet_music, bg="black", height=80, width=520)
-        self.text.insert('insert', "This image here is of the treble clef. The treble clef is played by your RIGHT \nhand.\n\n"
-            "The bass clef is played with your left hand, but let's just focus on the right for \nnow!\n\n"
-            "An easy way to remember all the notes is by following this nifty trick:\n"
-            "All the notes on the SPACES spell out FACE from the bottom up.\n"
-            "All the notes on the LINES can be remembered by the sentence Every Good \nBoy Deserves Fudge. EGBDF\n\n"
-            "The middle C note ALWAYS is the note with a line through the middle. This is \nthe middle of the piano.")
+        self.staff = Tkinter.Label(self.window, image=self.sheet_music, bg="black", height=410, width=520)
 
-        self.staff.grid(row=1, column=1)
-        self.text.grid(row=2, column=1)
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img1 = ImageTk.PhotoImage(Image.open("images/text/lesson1_chapter2/txt1.png"))
+        self.text1 = Tkinter.Label(self.window, bg="black", image=self.img1, height=25, width=250)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter2_next1)
+
+        self.staff.grid(row=0, column=0, columnspan=5, rowspan=10)
+        self.next_bttn.grid(row=9, column=2)
+        self.text1.grid(row=7, column=2)
+        self.logo.grid(row=0, column=2)
+
+    def l1_chapter2_next1(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.img2 = ImageTk.PhotoImage(Image.open("images/text/lesson1_chapter2/txt2.png"))
+        self.text2 = Tkinter.Label(self.window, bg="black", image=self.img2, height=50, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter2_next2)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.text2.grid(row=8, column=2)
+        self.next_bttn.grid(row=9, column=2)
+        self.logo.grid(row=0, column=2)
+
+    def l1_chapter2_next2(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.img3 = ImageTk.PhotoImage(Image.open("images/text/lesson1_chapter2/txt3.png"))
+        self.text3 = Tkinter.Label(self.window, bg="black", image=self.img3, height=50, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter2_next3)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.text3.grid(row=8, column=2)
+        self.next_bttn.grid(row=9, column=2)
+        self.logo.grid(row=0, column=2)
+
+    def l1_chapter2_next3(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.img4 = ImageTk.PhotoImage(Image.open("images/text/lesson1_chapter2/txt4.png"))
+        self.text4 = Tkinter.Label(self.window, bg="black", image=self.img4, height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter2_next4)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.text4.grid(row=8, column=2)
+        self.next_bttn.grid(row=9, column=2)
+        self.logo.grid(row=0, column=2)
+
+    def l1_chapter2_next4(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.img5 = ImageTk.PhotoImage(Image.open("images/text/lesson1_chapter2/txt5.png"))
+        self.text5 = Tkinter.Label(self.window, bg="black", image=self.img5, height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter2_next5)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.text5.grid(row=8, column=2)
+        self.next_bttn.grid(row=9, column=2)
+        self.logo.grid(row=0, column=2)
+
+    def l1_chapter2_next5(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.img6 = ImageTk.PhotoImage(Image.open("images/text/lesson1_chapter2/txt6.png"))
+        self.text6 = Tkinter.Label(self.window, bg="black", image=self.img6, height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/next_sm.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l1_chapter2_next3)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.text6.grid(row=8, column=2)
+        self.next_bttn.grid(row=9, column=2)
+        self.logo.grid(row=0, column=2)
 
     def guess_note_func(self):
         """ Lesson 1: Guess The Note
 			MINI GAME that shows a picture of note on sheet music. Then asks user to guess note
 			by pressing the piano keyboard of the corresponding key. """
         self.lesson1_panel.destroy()
-        self.key_keyboard_button.destroy()
-        self.sheet_reading_button.destroy()
-        self.spelling_button.destroy()
-        self.guess_note_button.destroy()
-        self.main_menu_panel.destroy()
+        self.logo.destroy()
+        self.lesson1_sub.destroy()
+        self.chapter1.destroy()
+        self.chapter2.destroy()
 
         # Generates random note.
         self.rand_gen_note = guess.randomize_note()
