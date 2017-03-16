@@ -2,10 +2,17 @@ from PianoInput import PianoInput
 import pygame.midi
 import winsound
 
-class Chromatics:
+class Scales:
     def __init__(self):
         self.user_input = []
-        self.c_scale = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c']
+        self.c_scale = ['c', 'd', 'e', 'f', 'g', 'a', 'b', 'c']
+        self.d_scale = ['d', 'e', 'f#', 'g#', 'a', 'b', 'c#', 'd']
+        self.e_scale = ['e', 'f#', 'g#', 'a', 'b', 'c#', 'd#', 'e']
+        self.f_scale = ['f', 'g', 'a', 'a#', 'c', 'd', 'e', 'f']
+        self.g_scale = ['g', 'a', 'b', 'c', 'd', 'e', 'f#', 'g']
+        self.a_scale = ['a', 'b' 'c#', 'd', 'e', 'f#', 'g#', 'a']
+        self.b_scale = ['b', 'c#', 'd#', 'e', 'f#', 'g#', 'a#', 'b']
+        self.chromatic = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c']
 
         self.isTrue = True
 
@@ -45,9 +52,9 @@ class Chromatics:
 
 if __name__ == '__main__':
     piano = PianoInput()
-    chrom = Chromatics()
+    c = Scales()
 
-    while chrom.isTrue:
+    while c.isTrue:
 
         piano.detect_key()
 
@@ -57,9 +64,9 @@ if __name__ == '__main__':
             user_input_notes = []
             print piano.display_note(piano.piano_key[0][0][1])
 
-            chrom.user_input = chrom.input_to_list(piano.piano_key[0][0][1])
+            c.user_input = c.input_to_list(piano.piano_key[0][0][1])
 
-            for item in chrom.user_input:
+            for item in c.user_input:
                 temp_key = piano.display_note(item)
 
                 parsed_note = piano.parse_key(temp_key)
@@ -68,6 +75,6 @@ if __name__ == '__main__':
                 print "user input notes"
                 print user_input_notes
 
-                chrom.win_or_lose(user_input_notes)
+                c.win_or_lose(user_input_notes)
 
                 continue
