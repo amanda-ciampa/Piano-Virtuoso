@@ -20,14 +20,14 @@ class Scales:
         self.user_input.append(input)
         return self.user_input
 
-    def win_or_lose(self, user_input_notes):
+    def win_or_lose(self, user_input_notes, scale):
         i = 0  # Counter for list positions.
 
         user_str = ''.join(user_input_notes)
-        c_str = ''.join(self.c_scale)
+        c_str = ''.join(scale)
 
         # If notes are correct.
-        if user_input_notes == self.c_scale:
+        if user_input_notes == scale:
             print 'CONGRATS!'
             winsound.PlaySound('sound/sfx/OOT_Song_Correct.wav', winsound.SND_FILENAME)
 
@@ -75,6 +75,6 @@ if __name__ == '__main__':
                 print "user input notes"
                 print user_input_notes
 
-                c.win_or_lose(user_input_notes)
+                c.win_or_lose(user_input_notes, c.c_scale)
 
                 continue
