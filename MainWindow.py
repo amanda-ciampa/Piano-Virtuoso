@@ -36,7 +36,7 @@ class MainWindow():
         self.lessonmenu = Tkinter.Menu(self.menubar, tearoff=0)
         self.lessonmenu.add_command(label="Lesson 1 - Keys & Notes", command=self.main_menu)
         self.lessonmenu.add_command(label="Lesson 2 - C & Chromatic Scales", command=self.l2_main_menu)
-        self.lessonmenu.add_command(label="Lesson 3", command=self.main_menu)
+        self.lessonmenu.add_command(label="Lesson 3 - F, G, & Other Scales", command=self.l3_main_menu)
         self.lessonmenu.add_command(label="Lesson 4", command=self.main_menu)
         self.lessonmenu.add_command(label="Lesson 5", command=self.main_menu)
         self.menubar.add_cascade(label="Lessons", menu=self.lessonmenu)
@@ -76,6 +76,12 @@ class MainWindow():
                                                       "Created by Amanda Ciampa\n\n"
                                                       "An educational video game that helps how to learn \nto play piano and read music.")
 
+#     __    ________________ ____  _   __   ___   __  ______    _____   __   __  __________   ____  __
+#    / /   / ____/ ___/ ___// __ \/ | / /  <  /  /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
+#   / /   / __/  \__ \\__ \/ / / /  |/ /   / /  / /|_/ / /| |  / //  |/ /  / /|_/ / __/ /  |/ / / / /
+#  / /___/ /___ ___/ /__/ / /_/ / /|  /   / /  / /  / / ___ |_/ // /|  /  / /  / / /___/ /|  / /_/ /
+# /_____/_____//____/____/\____/_/ |_/   /_/  /_/  /_/_/  |_/___/_/ |_/  /_/  /_/_____/_/ |_/\____/
+
     def main_menu(self):
         """ Closes title menu & displays the main menu of lesson 1. """
         self.titlePanel.destroy()
@@ -97,8 +103,8 @@ class MainWindow():
         self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
 
         # Lesson 1 Buttons Initialization
-        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l1_chapter1, bd=0, bg="black", height=25, width=100)
-        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l1_chapter2, bd=0, bg="black", height=25, width=100)
+        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l1_chapter1, bd=1, bg="black", height=25, width=100)
+        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l1_chapter2, bd=1, bg="black", height=25, width=100)
         # change command to command=self.l1_chapter2
 
         self.lesson1_panel.grid(row=0, column=0, columnspan=5, rowspan=10)
@@ -106,6 +112,12 @@ class MainWindow():
         self.chapter1.grid(row=7, column=0)
         self.chapter2.grid(row=7, column=1)
         self.logo.grid(row=0, column=0)
+
+    #     __    ________________ ____  _   __   ___            ________  _____    ____  ________________     ___
+    #    / /   / ____/ ___/ ___// __ \/ | / /  <  /           / ____/ / / /   |  / __ \/_  __/ ____/ __ \   <  /
+    #   / /   / __/  \__ \\__ \/ / / /  |/ /   / /  ______   / /   / /_/ / /| | / /_/ / / / / __/ / /_/ /   / /
+    #  / /___/ /___ ___/ /__/ / /_/ / /|  /   / /  /_____/  / /___/ __  / ___ |/ ____/ / / / /___/ _, _/   / /
+    # /_____/_____//____/____/\____/_/ |_/   /_/            \____/_/ /_/_/  |_/_/     /_/ /_____/_/ |_|   /_/
 
     def l1_chapter1(self):
         """ Lesson 1: Keys on Piano Keyboard
@@ -211,6 +223,12 @@ class MainWindow():
         self.text5.grid(row=13, column=1)
         self.spellingkee_bttn.grid(row=14, column=1)
         self.logo.grid(row=0, column=1)
+
+    #    _____ ____  ________    __    _____   ________   _________    __  _________
+    #   / ___// __ \/ ____/ /   / /   /  _/ | / / ____/  / ____/   |  /  |/  / ____/
+    #   \__ \/ /_/ / __/ / /   / /    / //  |/ / / __   / / __/ /| | / /|_/ / __/
+    #  ___/ / ____/ /___/ /___/ /____/ // /|  / /_/ /  / /_/ / ___ |/ /  / / /___
+    # /____/_/   /_____/_____/_____/___/_/ |_/\____/   \____/_/  |_/_/  /_/_____/
 
     def spelling_func(self):
         """ Lesson 1: Spelling Game
@@ -318,6 +336,12 @@ class MainWindow():
 
         #self.text.grid(row=2, column=2)
         self.window.after(1, self.spelling_loop)
+
+    #     __    ________________ ____  _   __   ___            ________  _____    ____  ________________     ___
+    #    / /   / ____/ ___/ ___// __ \/ | / /  <  /           / ____/ / / /   |  / __ \/_  __/ ____/ __ \   |__ \
+    #   / /   / __/  \__ \\__ \/ / / /  |/ /   / /  ______   / /   / /_/ / /| | / /_/ / / / / __/ / /_/ /   __/ /
+    #  / /___/ /___ ___/ /__/ / /_/ / /|  /   / /  /_____/  / /___/ __  / ___ |/ ____/ / / / /___/ _, _/   / __/
+    # /_____/_____//____/____/\____/_/ |_/   /_/            \____/_/ /_/_/  |_/_/     /_/ /_____/_/ |_|   /____/
 
     def l1_chapter2(self):
         """ Lesson 1: Basic Sheet Music
@@ -435,6 +459,12 @@ class MainWindow():
         self.next_bttn.grid(row=9, column=2)
         self.logo.grid(row=0, column=2)
 
+    #    ________  __________________    ________  ________   _   ______  ____________
+    #   / ____/ / / / ____/ ___/ ___/   /_  __/ / / / ____/  / | / / __ \/_  __/ ____/
+    #  / / __/ / / / __/  \__ \\__ \     / / / /_/ / __/    /  |/ / / / / / / / __/
+    # / /_/ / /_/ / /___ ___/ /__/ /    / / / __  / /___   / /|  / /_/ / / / / /___
+    # \____/\____/_____//____/____/    /_/ /_/ /_/_____/  /_/ |_/\____/ /_/ /_____/
+
     def guess_note_func(self):
         """ Lesson 1: Guess The Note
 			MINI GAME that shows a picture of note on sheet music. Then asks user to guess note
@@ -495,6 +525,12 @@ class MainWindow():
         self.text.grid(row=2, column=2)
         self.window.after(1, self.guess_note_loop)
 
+    #     __    ________________ ____  _   __   ___      __  ______    _____   __   __  __________   ____  __
+    #    / /   / ____/ ___/ ___// __ \/ | / /  |__ \    /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
+    #   / /   / __/  \__ \\__ \/ / / /  |/ /   __/ /   / /|_/ / /| |  / //  |/ /  / /|_/ / __/ /  |/ / / / /
+    #  / /___/ /___ ___/ /__/ / /_/ / /|  /   / __/   / /  / / ___ |_/ // /|  /  / /  / / /___/ /|  / /_/ /
+    # /_____/_____//____/____/\____/_/ |_/   /____/  /_/  /_/_/  |_/___/_/ |_/  /_/  /_/_____/_/ |_/\____/
+
     def l2_main_menu(self):
         """ Displays the main menu of lesson 2. """
         self.titlePanel.destroy()
@@ -524,6 +560,37 @@ class MainWindow():
         self.chapter1.grid(row=7, column=0)
         self.chapter2.grid(row=7, column=1)
         self.logo.grid(row=0, column=0)
+
+    def l3_main_menu(self):
+        """ Displays the main menu of lesson 3. """
+        self.titlePanel.destroy()
+        self.start.destroy()
+        self.exit.destroy()
+
+        # Image variables
+        self.lesson3_header = ImageTk.PhotoImage(Image.open("images/headers/lesson3.png"))
+        self.lesson3_subhead = ImageTk.PhotoImage(Image.open("images/headers/lesson3a.png"))
+        self.chapter1_text = ImageTk.PhotoImage(Image.open("images/buttons/l3c1.png"))
+        self.chapter2_text = ImageTk.PhotoImage(Image.open("images/buttons/l3c2.png"))
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+
+        # Lesson 3 panel
+        self.lesson3_panel = Tkinter.Label(self.window, bg="black", image=self.lesson3_header, height=410, width=410)
+        self.lesson3_sub = Tkinter.Label(self.window, bg="black", image=self.lesson3_subhead, height=25, width=290)
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=115)
+
+
+        # Lesson 3 Buttons Initialization
+        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l2_chapter1, bd=1, bg="black", height=25, width=115)
+        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l2_chapter2, bd=1, bg="black", height=25, width=115)
+        # change command to command=self.l1_chapter2
+
+        self.lesson3_panel.grid(row=0, column=0, columnspan=10, rowspan=10)
+        self.lesson3_sub.grid(row=6, column=1)
+        self.chapter1.grid(row=7, column=1)
+        self.chapter2.grid(row=7, column=2)
+        self.logo.grid(row=0, column=1)
+
 
 if __name__ == '__main__':
     mw = MainWindow()
