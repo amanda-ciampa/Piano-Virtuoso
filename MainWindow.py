@@ -840,10 +840,9 @@ class MainWindow():
         self.lesson3_sub = Tkinter.Label(self.window, bg="black", image=self.lesson3_subhead, height=25, width=290)
         self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=115)
 
-
         # Lesson 3 Buttons Initialization
-        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l2_chapter1, bd=1, bg="black", height=25, width=115)
-        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l2_chapter2, bd=1, bg="black", height=25, width=115)
+        self.chapter1 = Tkinter.Button(self.window, image=self.chapter1_text, command=self.l3_chapter1, bd=1, bg="black", height=25, width=115)
+        self.chapter2 = Tkinter.Button(self.window, image=self.chapter2_text, command=self.l3_chapter2, bd=1, bg="black", height=25, width=115)
         # change command to command=self.l1_chapter2
 
         self.lesson3_panel.grid(row=0, column=0, columnspan=10, rowspan=10)
@@ -851,6 +850,392 @@ class MainWindow():
         self.chapter1.grid(row=7, column=1)
         self.chapter2.grid(row=7, column=2)
         self.logo.grid(row=0, column=1)
+
+    #     __    ________________ ____  _   __   _____             ________  _____    ____  ________________     ___
+    #    / /   / ____/ ___/ ___// __ \/ | / /  |__  /            / ____/ / / /   |  / __ \/_  __/ ____/ __ \   <  /
+    #   / /   / __/  \__ \\__ \/ / / /  |/ /    /_ <   ______   / /   / /_/ / /| | / /_/ / / / / __/ / /_/ /   / /
+    #  / /___/ /___ ___/ /__/ / /_/ / /|  /   ___/ /  /_____/  / /___/ __  / ___ |/ ____/ / / / /___/ _, _/   / /
+    # /_____/_____//____/____/\____/_/ |_/   /____/            \____/_/ /_/_/  |_/_/     /_/ /_____/_/ |_|   /_/
+
+    def l3_chapter1(self):
+        """ Lesson 3, Chapter 1: F & G Scales
+            Teaches about the F and G scales, as well as what accidentals, sharps, and flats are."""
+
+        # Destorys other GUI modules
+        self.lesson3_panel.destroy()
+        self.lesson3_sub.destroy()
+        self.chapter1.destroy()
+        self.chapter2.destroy()
+        self.logo.destroy()
+
+        # Keyboard diagram
+        self.key_loc = ImageTk.PhotoImage(Image.open('images/notes/fg.png')) 
+        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=450, width=410) 
+
+        # Text
+        self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt1.png'))
+        self.text1 = Tkinter.Label(self.window, image=self.img1, bg="black", height=50, width=410)
+
+        # Piano Virtuoso logo
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        # Next button
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter1_next1)
+
+        # Maps modules to GUI
+        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text1.grid(row=13, column=1)
+        self.logo.grid(row=0, column=1)
+        self.next_bttn.grid(row=14, column=1)
+
+    def l3_chapter1_next1(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt2.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter1_next2)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)
+
+    def l3_chapter1_next2(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt3.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter1_next3)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)      
+
+    def l3_chapter1_next3(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt4.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter1_next4)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)      
+
+    def l3_chapter1_next4(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt5.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter1_next5)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter1_next5(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt6.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter1_next6)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter1_next6(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt7.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter1_next7)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter1_next7(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt8.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter1_next8)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter1_next8(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt9.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/fg_scale.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=170, command=self.l3_chapter1_next2)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    #     __    ________________ ____  _   __   _____             ________  _____    ____  ________________     ___
+    #    / /   / ____/ ___/ ___// __ \/ | / /  |__  /            / ____/ / / /   |  / __ \/_  __/ ____/ __ \   |__ \
+    #   / /   / __/  \__ \\__ \/ / / /  |/ /    /_ <   ______   / /   / /_/ / /| | / /_/ / / / / __/ / /_/ /   __/ /
+    #  / /___/ /___ ___/ /__/ / /_/ / /|  /   ___/ /  /_____/  / /___/ __  / ___ |/ ____/ / / / /___/ _, _/   / __/
+    # /_____/_____//____/____/\____/_/ |_/   /____/            \____/_/ /_/_/  |_/_/     /_/ /_____/_/ |_|   /____/
+
+    def l3_chapter2(self):
+        """ Lesson 3, Chapter 2: Other Chords
+            This chapter teaches about the D, A, E, and B scales. It also touches on the Circle of Fifths."""
+
+        # Destorys other GUI modules
+        self.lesson3_panel.destroy()
+        self.lesson3_sub.destroy()
+        self.chapter1.destroy()
+        self.chapter2.destroy()
+        self.logo.destroy()
+
+        # Keyboard diagram
+        self.key_loc = ImageTk.PhotoImage(Image.open('images/notes/co5sm.png')) 
+        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=500, width=410) 
+
+        # Text
+        self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt1.png'))
+        self.text1 = Tkinter.Label(self.window, image=self.img1, bg="black", height=50, width=410)
+
+        # Piano Virtuoso logo
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        # Next button
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter2_next1)
+
+        # Maps modules to GUI
+        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text1.grid(row=13, column=1)
+        self.logo.grid(row=0, column=1)
+        self.next_bttn.grid(row=14, column=1)
+
+    def l3_chapter2_next1(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt2.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter2_next2)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)
+
+    def l3_chapter2_next2(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt3.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter2_next3)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)      
+
+    def l3_chapter2_next3(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt4.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter2_next4)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1)      
+
+    def l3_chapter2_next4(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+        self.keyboard.destroy()
+
+        self.scale_pic = ImageTk.PhotoImage(Image.open('images/notes/d_scale.png')) 
+        self.scale = Tkinter.Label(self.window, image=self.scale_pic, bg="black", height=500, width=410)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt5.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter2_next5)
+
+        self.scale.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter2_next5(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+        self.scale.destroy()
+
+        self.scale_pic = ImageTk.PhotoImage(Image.open('images/notes/a_scale.png')) 
+        self.scale = Tkinter.Label(self.window, image=self.scale_pic, bg="black", height=500, width=410)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt6.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter2_next6)
+
+        self.scale.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter2_next6(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+        self.scale.destroy()
+
+        self.scale_pic = ImageTk.PhotoImage(Image.open('images/notes/e_scale.png')) 
+        self.scale = Tkinter.Label(self.window, image=self.scale_pic, bg="black", height=500, width=410)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt7.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter2_next7)
+
+        self.scale.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter2_next7(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+        self.scale.destroy()
+
+        self.scale_pic = ImageTk.PhotoImage(Image.open('images/notes/b_scale.png')) 
+        self.scale = Tkinter.Label(self.window, image=self.scale_pic, bg="black", height=500, width=410)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt8.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/nexty.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=120, command=self.l3_chapter2_next8)
+
+        self.scale.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
+
+    def l3_chapter2_next8(self):
+        self.text1.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.img2 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt9.png'))
+        self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
+
+        self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/scales.png'))
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=170, command=self.l3_chapter2_next2)
+
+        self.text2.grid(row=13, column=1)
+        self.next_bttn.grid(row=14, column=1)
+        self.logo.grid(row=0, column=1) 
 
     #     __    ________________ ____  _   __   __ __     __  ______    _____   __   __  __________   ____  __
     #    / /   / ____/ ___/ ___// __ \/ | / /  / // /    /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
