@@ -76,7 +76,7 @@ class SpellingGame:
         # If notes are correct.
         if user_input_notes == self.generated_word:
             print 'CONGRATS!'
-            winsound.PlaySound('sound/sfx/OOT_Song_Correct.wav', winsound.SND_FILENAME)
+            winsound.PlaySound('sound/sfx/S3K_A9.wav', winsound.SND_FILENAME)
 
             # Clears out all previous input & generated words
             self.generated_word = []
@@ -101,7 +101,7 @@ class SpellingGame:
         # If user gets note wrong.
         elif user_input_notes[i] != self.generated_word[i]:
             print 'WRONG!'
-            winsound.PlaySound('sound/sfx/OOT_Song_Error.wav', winsound.SND_FILENAME)
+            winsound.PlaySound('sound/sfx/S3K_B2.wav', winsound.SND_FILENAME)
 
             # Clears out all previous input
             self.user_input = []

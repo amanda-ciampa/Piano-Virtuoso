@@ -28,7 +28,7 @@ class Chords:
         # If notes are correct.
         if chord in user_input_notes:
             print 'CONGRATS!'
-            winsound.PlaySound('sound/sfx/OOT_Song_Correct.wav', winsound.SND_FILENAME)
+            winsound.PlaySound('sound/sfx/S3K_A9.wav', winsound.SND_FILENAME)
 
             # Breaks out of loop since done correctly.
             c.isTrue = False
@@ -36,7 +36,7 @@ class Chords:
         # If user gets note wrong.
         elif (len(user_str) == len(c_str)) and (user_str != c_str):
             print 'WRONG!'
-            winsound.PlaySound('sound/sfx/OOT_Song_Error.wav', winsound.SND_FILENAME)
+            winsound.PlaySound('sound/sfx/S3K_B2.wav', winsound.SND_FILENAME)
 
             # Clears out all previous input
             self.user_input = []
