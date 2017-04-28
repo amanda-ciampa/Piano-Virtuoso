@@ -6,6 +6,7 @@
 
 import pygame.midi
 import random
+import time
 
 class PianoInput:
     def __init__(self):
@@ -15,18 +16,19 @@ class PianoInput:
         pygame.init()
         pygame.midi.init()
         self.midi = pygame.midi.Input(1, 0)  # Input MIDI note
-        #self.player = pygame.midi.Output(0)  # Output (plays) note
-
-    # self.note = pygame.midi.
+        self.play = pygame.midi.Output(0)  # Output (plays) note
+        self.play.set_instrument(110) # Sets instrument sound
 
     def detect_key(self):
         """ Method to detect what piano key is pressed on MIDI controller & print out pressed note. """
-
         self.piano_key = self.midi.read(1)
         return self.piano_key
 
-    def play_note(self, ):
-        pass
+    def play_note(self, note_number):
+        """ Method that plays sound when MIDI key is pressed. """
+        self.play.note_on(note_number, velocity=127, channel=1)
+        if self.piano_key[0][0][0] == 128:
+            self.play.note_off(note_number, velocity=127, channel=1)
 
     @staticmethod
     def display_note(note_number):
@@ -41,7 +43,6 @@ class PianoInput:
                 72: 'C 4', 73: 'C# 4', 74: 'D 4', 75: 'D# 4', 76: 'E 4', 77: 'F 4', 78: 'F# 4', 79: 'G 4', 80: 'G# 4',
                 81: 'A 4', 82: 'A# 4', 83: 'B 4',
                 84: 'C 5'}
-
         return note[note_number]
 
     @staticmethod

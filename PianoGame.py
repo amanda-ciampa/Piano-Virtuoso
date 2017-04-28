@@ -26,8 +26,9 @@ if __name__ == "__main__":
         else:
             # Prints the note pressed.
             print piano.display_note(piano.piano_key[0][0][1])
+            piano.play_note(piano.piano_key[0][0][1])
 
-            # spelling.user_input = spelling.input_to_list(piano.piano_key[0][0][1])
+            # spelling.user_input = spelling.input_to_list(piano.piano_key[0][
 
             # user_input_notes = []
 
