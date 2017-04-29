@@ -49,6 +49,17 @@ class MainWindow():
         self.l4c1_score = 0
         self.l5_score = 0
 
+        #If the chapters have been completed
+        self.l1c1_complete = 0
+        self.l1c2_complete = 0
+        self.l2c1_complete = 0
+        self.l2c2_complete = 0
+        self.l3c1_complete = 0
+        self.l3c2_complete = 0
+        self.l4c1_complete = 0
+        self.l4c2_complete = 0
+        self.l5_complete = 0
+
         """ Constructor that creates GUI. """
         self.window = Tkinter.Tk()  # Creates instance of tkinter GUI
         self.window.wm_title("Piano Virtuoso")  # Displays a string in title bar
@@ -338,7 +349,14 @@ class MainWindow():
                     user_input_notes = []
                     i = 0
 
-                    self.main_menu()
+                    self.l1c1_complete += 1 #Completed level is set to true
+
+                    # If user completed both chapter 1 & chapter 2, goes to next lesson
+                    if self.l1c1_complete > 0 and self.l1c2_complete > 0:
+                        self.l2_main_menu()
+                    # Otherwise, goes back to current lesson's main menu
+                    else:
+                        self.main_menu()
                     break
 
                 # If notes are correct.
@@ -579,7 +597,7 @@ class MainWindow():
             print self.rand_gen_note
 
             # If the user received 10 points:
-            if self.l1c2_score >= 5:
+            if self.l1c2_score >= 10:
                 self.l1c2_score = 0 #Sets score back to 0
 
                 self.guess_note_label.destroy()
@@ -587,11 +605,17 @@ class MainWindow():
                 self.logo.destroy()
                 self.back.destroy()
                 if self.wrong > 0:
-                    #pygame.midi.quit() #Quits out of midi
                     self.try_again.destroy()
                     self.wrong = 0
 
-                self.main_menu()
+                self.l1c2_complete += 1 #Completed level is set to true
+
+                # If user completed both chapter 1 & chapter 2, goes to next lesson
+                if self.l1c1_complete > 0 and self.l1c2_complete > 0:
+                    self.l2_main_menu()
+                # Otherwise, goes back to current lesson's main menu
+                else:
+                    self.main_menu()
 
             # If the user input note is equal to randomized note
             if guess.note == self.rand_gen_note.lower():
@@ -602,8 +626,8 @@ class MainWindow():
                     sound = pygame.mixer.Sound("sound/sfx/S3K_A9.wav")
                     sound.play(loops = 0)
                 except pygame.error, message:
-                        print "Cannot load sound: " + sound_name
-                        raise SystemExit, message
+                    print "Cannot load sound: " + sound_name
+                    raise SystemExit, message
 
                 # Generates random note.
                 self.rand_gen_note = guess.randomize_note()
@@ -837,7 +861,14 @@ class MainWindow():
                     user_input_notes = []
                     i = 0
 
-                    self.l2_main_menu()
+                    self.l2c1_complete += 1 #Completed level is set to true
+
+                    # If user completed both chapter 1 & chapter 2, goes to next lesson
+                    if self.l2c1_complete > 0 and self.l2c2_complete > 0:
+                        self.l3_main_menu()
+                    # Otherwise, goes back to current lesson's main menu
+                    else:
+                        self.l2_main_menu()
                     break
 
                 # Correct input
@@ -1083,13 +1114,20 @@ class MainWindow():
                     user_input_notes = []
                     i = 0
 
-                    self.l2_main_menu()
+                    self.l2c2_complete += 1 #Completed level is set to true
+
+                    # If user completed both chapter 1 & chapter 2, goes to next lesson
+                    if self.l2c1_complete > 0 and self.l2c2_complete > 0:
+                        self.l3_main_menu()
+                    # Otherwise, goes back to current lesson's main menu
+                    else:
+                        self.l2_main_menu()
                     break
 
                 # Correct input
                 if user_input_notes == scale.chromatic:
                     self.l2c2_score = self.l2c2_score + 1
-                    print self.l2c1_score
+                    print self.l2c2_score
 
                     try: #Plays note correct sound effect.
                         sound = pygame.mixer.Sound("sound/sfx/S3K_A9.wav")
@@ -1183,8 +1221,8 @@ class MainWindow():
         self.logo.destroy()
 
         # Keyboard diagram
-        self.key_loc = ImageTk.PhotoImage(Image.open('images/notes/fg.png')) 
-        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=450, width=410) 
+        self.fg_img = ImageTk.PhotoImage(Image.open('images/notes/fg.png')) 
+        self.fgImg = Tkinter.Label(self.window, image=self.fg_img, bg="black", height=450, width=410) 
 
         # Text
         self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/txt1.png'))
@@ -1199,7 +1237,7 @@ class MainWindow():
         self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter1_next1)
 
         # Maps modules to GUI
-        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.fgImg.grid(row=0, column=0, columnspan=5, rowspan=15)
         self.text1.grid(row=13, column=1)
         self.logo.grid(row=0, column=1)
         self.next_bttn.grid(row=14, column=1)
@@ -1342,11 +1380,135 @@ class MainWindow():
         self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
 
         self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/fg_scale.png'))
-        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=170, command=self.l3_chapter1_next2)
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=170, command=self.fg_scale)
 
         self.text2.grid(row=13, column=1)
         self.next_bttn.grid(row=14, column=1)
         self.logo.grid(row=0, column=1) 
+
+    #     ______   ___        ______   _____ _________    __    ___________
+    #    / ____/  ( _ )      / ____/  / ___// ____/   |  / /   / ____/ ___/
+    #   / /_     / __ \/|   / / __    \__ \/ /   / /| | / /   / __/  \__ \
+    #  / __/    / /_/  <   / /_/ /   ___/ / /___/ ___ |/ /___/ /___ ___/ /
+    # /_/       \____/\/   \____/   /____/\____/_/  |_/_____/_____//____/
+
+    def fg_scale(self):
+        """ Mini game - Chromatic scale
+            Has the user play the F & G scales 5 times each to complete. """
+        self.text2.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+
+        piano.detect_key()
+
+        if self.l3c1_score == 0:
+            self.ftxt = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/Fg_Scale/f_scaletxt.png'))
+            self.f_txt = Tkinter.Label(self.window, image=self.ftxt, bg="black", height=25, width=410)
+            self.f_txt.grid(row=9, column=0, columnspan=5, rowspan=15)        
+
+        if piano.piano_key == [] or piano.piano_key[0][0][0] == 128:
+            pass
+        else:
+            print piano.display_note(piano.piano_key[0][0][1]) # Prints pressed note to console.
+            piano.play_note(piano.piano_key[0][0][1])   # Plays sound when pressed.
+
+            #Puts user input into list
+            scale.user_input = scale.input_to_list(piano.piano_key[0][0][1]) 
+
+            # Empty list to fill with user input once note is parsed.
+            user_input_notes = []
+
+            # Each note is parsed to only include the note pressed, no number - then put in a list
+            for item in scale.user_input:
+                temp_key = piano.display_note(item)
+                parsed_note = piano.parse_key(temp_key) # Parses note to slice off the number at end.
+
+                user_input_notes.append(parsed_note) # Adds parsed note to user_input_notes
+
+                i = 0  # Counter for list positions.
+
+                # Converts user input list to string for easy comparison
+                user_str = ''.join(user_input_notes)
+
+                # If current score is even, use F scale as comparison list & convert to string
+                if self.l3c1_score % 2 == 0:
+                    fg = ''.join(scale.f_scale) # F G A Bb C D E F
+                    current_scale = scale.f_scale
+                # Otherwise, use G scale
+                else:
+                    fg = ''.join(scale.g_scale) # G A B C D E F# G
+                    current_scale = scale.g_scale
+
+                if self.l3c1_score >= 10:
+                    self.l3c1_score = 0 #Sets score back to 0
+                    self.fgImg.destroy()
+                    self.f_txt.destroy()
+                    self.logo.destroy()
+                    self.correct.destroy()
+                    if self.wrong > 0:
+                        #pygame.midi.quit() #Quits out of midi
+                        self.try_again.destroy()
+                        self.wrong = 0
+
+                    # Clears out previous input
+                    scale.user_input = []
+                    user_input_notes = []
+                    i = 0
+
+                    self.l3c1_complete += 1 #Completed level is set to true
+
+                    # If user completed both chapter 1 & chapter 2, goes to next lesson
+                    if self.l3c1_complete > 0 and self.l3c2_complete > 0:
+                        self.l4_main_menu()
+                    # Otherwise, goes back to current lesson's main menu
+                    else:
+                        self.l3_main_menu()
+                    break
+
+                # Correct input
+                if user_input_notes == current_scale:
+                    self.l3c1_score = self.l3c1_score + 1
+                    print self.l3c1_score
+
+                    try: #Plays note correct sound effect.
+                        sound = pygame.mixer.Sound("sound/sfx/S3K_A9.wav")
+                        sound.play(loops = 0)
+                    except pygame.error, message:
+                        print "Cannot load sound: " + sound_name
+                        raise SystemExit, message
+
+                    scale.user_input = []
+                    user_input_notes = []
+
+                    str_score = str(self.l3c1_score)
+                    self.correct_txt = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/Fg_Scale/good' + str_score + '.png'))
+                    self.correct = Tkinter.Label(self.window, image=self.correct_txt, bg="black", height=25, width=410)
+
+                    self.correct.grid(row=9, column=0, columnspan=5, rowspan=15)
+
+                # Wrong input
+                elif (len(user_str) == len(fg)) and (user_str != fg):
+                    self.wrong = self.wrong + 1
+
+                    try: #Plays note wrong sound effect.
+                        sound = pygame.mixer.Sound("sound/sfx/S3K_B2.wav")
+                        sound.play(loops = 0)
+                    except pygame.error, message:
+                        print "Cannot load sound: " + sound_name
+                        raise SystemExit, message
+
+                    scale.user_input = []
+                    user_input_notes = []
+                    i = 0
+
+                    self.try_text = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter1/Fg_Scale/try_again.png'))
+                    self.try_again = Tkinter.Label(self.window, image=self.try_text, bg="black", height=25, width=410)
+
+                    self.try_again.grid(row=9, column=0, columnspan=2, rowspan=15)
+                else:
+                    i = i + 1
+        self.window.after(1, self.fg_scale)
+
 
     #     __    ________________ ____  _   __   _____             ________  _____    ____  ________________     ___
     #    / /   / ____/ ___/ ___// __ \/ | / /  |__  /            / ____/ / / /   |  / __ \/_  __/ ____/ __ \   |__ \
@@ -1366,8 +1528,8 @@ class MainWindow():
         self.logo.destroy()
 
         # Keyboard diagram
-        self.key_loc = ImageTk.PhotoImage(Image.open('images/notes/co5sm.png')) 
-        self.keyboard = Tkinter.Label(self.window, image=self.key_loc, bg="black", height=500, width=410) 
+        self.cirof5 = ImageTk.PhotoImage(Image.open('images/notes/co5sm.png')) 
+        self.circleoffifths = Tkinter.Label(self.window, image=self.cirof5, bg="black", height=500, width=410) 
 
         # Text
         self.img1 = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/txt1.png'))
@@ -1382,7 +1544,7 @@ class MainWindow():
         self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=80, command=self.l3_chapter2_next1)
 
         # Maps modules to GUI
-        self.keyboard.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.circleoffifths.grid(row=0, column=0, columnspan=5, rowspan=15)
         self.text1.grid(row=13, column=1)
         self.logo.grid(row=0, column=1)
         self.next_bttn.grid(row=14, column=1)
@@ -1406,7 +1568,7 @@ class MainWindow():
         self.logo.grid(row=0, column=1)
 
     def l3_chapter2_next2(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
 
@@ -1424,7 +1586,7 @@ class MainWindow():
         self.logo.grid(row=0, column=1)      
 
     def l3_chapter2_next3(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
 
@@ -1442,10 +1604,10 @@ class MainWindow():
         self.logo.grid(row=0, column=1)      
 
     def l3_chapter2_next4(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
-        self.keyboard.destroy()
+        self.circleoffifths.destroy()
 
         self.scale_pic = ImageTk.PhotoImage(Image.open('images/notes/d_scale.png')) 
         self.scale = Tkinter.Label(self.window, image=self.scale_pic, bg="black", height=500, width=410)
@@ -1465,7 +1627,7 @@ class MainWindow():
         self.logo.grid(row=0, column=1) 
 
     def l3_chapter2_next5(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
         self.scale.destroy()
@@ -1488,7 +1650,7 @@ class MainWindow():
         self.logo.grid(row=0, column=1) 
 
     def l3_chapter2_next6(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
         self.scale.destroy()
@@ -1511,7 +1673,7 @@ class MainWindow():
         self.logo.grid(row=0, column=1) 
 
     def l3_chapter2_next7(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
         self.scale.destroy()
@@ -1534,7 +1696,7 @@ class MainWindow():
         self.logo.grid(row=0, column=1) 
 
     def l3_chapter2_next8(self):
-        self.text1.destroy()
+        self.text2.destroy()
         self.next_bttn.destroy()
         self.logo.destroy()
 
@@ -1545,11 +1707,160 @@ class MainWindow():
         self.text2 = Tkinter.Label(self.window, image=self.img2, bg="black", height=80, width=410)
 
         self.next_txt = ImageTk.PhotoImage(Image.open('images/buttons/scales.png'))
-        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=170, command=self.l3_chapter2_next2)
+        self.next_bttn = Tkinter.Button(self.window, image=self.next_txt, bd=0, bg="black", height=25, width=170, command=self.pre_other_scales)
 
         self.text2.grid(row=13, column=1)
         self.next_bttn.grid(row=14, column=1)
         self.logo.grid(row=0, column=1) 
+
+    #    ____  ________  ____________     _____ _________    __    ___________
+    #   / __ \/_  __/ / / / ____/ __ \   / ___// ____/   |  / /   / ____/ ___/
+    #  / / / / / / / /_/ / __/ / /_/ /   \__ \/ /   / /| | / /   / __/  \__ \
+    # / /_/ / / / / __  / /___/ _, _/   ___/ / /___/ ___ |/ /___/ /___ ___/ /
+    # \____/ /_/ /_/ /_/_____/_/ |_|   /____/\____/_/  |_/_____/_____//____/
+
+    def pre_other_scales(self):
+        """ Mini game - Other scale
+            Has the user play the scales D, E, A & B in a randomized order. """
+        self.text2.destroy()
+        self.next_bttn.destroy()
+        self.logo.destroy()
+        self.scale.destroy()
+
+        # Generates random word from dict.
+        self.list_scale = scale.random_chord_deab()
+
+        str_scale = ''.join(self.list_scale) 
+
+        # Text that tells user which scale to play
+        self.playscale = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/Other_Scales/' + str_scale + '.png')) 
+        self.play_scale = Tkinter.Label(self.window, image=self.playscale, bg="black", height=25, width=400)
+
+        # Displays corresponding chart to scale to be played
+        self.scalechart = ImageTk.PhotoImage(Image.open('images/notes/l3c2/' + str_scale + '.png'))
+        self.scale_chart = Tkinter.Label(self.window, image=self.scalechart, bg="black", height=410, width=410)
+
+        self.pv = ImageTk.PhotoImage(Image.open("images/title/pv.png"))
+        self.logo = Tkinter.Label(self.window, bg="black", image=self.pv, height=25, width=150)
+
+        self.scale_chart.grid(row=0, column=0, columnspan=5, rowspan=15)
+        self.play_scale.grid(row=7, column=0)
+        self.logo.grid(row=0, column=0)
+        
+        self.other_scales()
+
+    def other_scales(self):
+        """ Mini game - Other scale
+            Has the user play the scales D, E, A & B in a randomized order. """
+
+        piano.detect_key()
+        if piano.piano_key == [] or piano.piano_key[0][0][0] == 128:
+            pass
+        else:
+            print piano.display_note(piano.piano_key[0][0][1]) # Prints pressed note to console.
+            piano.play_note(piano.piano_key[0][0][1])   # Plays sound when pressed.
+
+            #Puts user input into list
+            scale.user_input = scale.input_to_list(piano.piano_key[0][0][1]) 
+
+            # Empty list to fill with user input once note is parsed.
+            user_input_notes = []
+
+            # Each note is parsed to only include the note pressed, no number - then put in a list
+            for item in scale.user_input:
+                temp_key = piano.display_note(item)
+                parsed_note = piano.parse_key(temp_key) # Parses note to slice off the number at end.
+
+                user_input_notes.append(parsed_note) # Adds parsed note to user_input_notes
+
+                i = 0  # Counter for list positions.
+
+                #random_scale = scale.random_chord_deab()
+
+                # Converts both lists to strings for easy comparison
+                user_str = ''.join(user_input_notes)
+                rand_scale = ''.join(self.list_scale)
+
+                if self.l3c2_score >= 15:
+                    self.l3c2_score = 0 #Sets score back to 0
+                    self.scale_chart.destroy()
+                    self.logo.destroy()
+                    self.play_scale.destroy()
+                    if self.wrong > 0:
+                        #pygame.midi.quit() #Quits out of midi
+                        self.try_again.destroy()
+                        self.wrong = 0
+
+                        # Clears out previous input
+                        scale.user_input = []
+                        scale.current_scale = []
+                        user_input_notes = []
+                        i = 0
+
+                        self.l2c2_complete += 1 #Completed level is set to true
+
+                    # If user completed both chapter 1 & chapter 2, goes to next lesson
+                    if self.l3c2_complete > 0 and self.l3c2_complete > 0:
+                        self.l4_main_menu()
+                    # Otherwise, goes back to current lesson's main menu
+                    else:
+                        self.l3_main_menu()
+                    break
+
+                # Correct input
+                if user_input_notes == self.list_scale:
+                    self.l3c2_score = self.l3c2_score + 1
+                    print self.l3c2_score
+
+                    try: #Plays note correct sound effect.
+                        sound = pygame.mixer.Sound("sound/sfx/S3K_A9.wav")
+                        sound.play(loops = 0)
+                    except pygame.error, message:
+                            print "Cannot load sound: " + sound_name
+                            raise SystemExit, message
+
+                    scale.user_input = []
+                    user_input_notes = []
+                    self.scale_chart.destroy()
+                    self.play_scale.destroy()
+
+                    self.list_scale = scale.random_chord_deab()
+
+                    str_scale = ''.join(self.list_scale) 
+
+                    # Text that tells user which scale to play
+                    self.playscale = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/Other_Scales/' + str_scale + '.png')) 
+                    self.play_scale = Tkinter.Label(self.window, image=self.playscale, bg="black", height=25, width=400)
+
+                    # Displays corresponding chart to scale to be played
+                    self.scalechart = ImageTk.PhotoImage(Image.open('images/notes/l3c2/' + str_scale + '.png'))
+                    self.scale_chart = Tkinter.Label(self.window, image=self.scalechart, bg="black", height=410, width=410)
+
+                    self.scale_chart.grid(row=0, column=0, columnspan=5, rowspan=15)
+                    self.play_scale.grid(row=7, column=0)
+
+                # Wrong input
+                elif (len(user_str) == len(rand_scale)) and (user_str != rand_scale):
+                    self.wrong = self.wrong + 1
+
+                    try: #Plays note wrong sound effect.
+                        sound = pygame.mixer.Sound("sound/sfx/S3K_B2.wav")
+                        sound.play(loops = 0)
+                    except pygame.error, message:
+                        print "Cannot load sound: " + sound_name
+                        raise SystemExit, message
+
+                    scale.user_input = []
+                    user_input_notes = []
+                    i = 0
+
+                    self.try_text = ImageTk.PhotoImage(Image.open('images/text/lesson3_chapter2/Other_Scales/try_again.png'))
+                    self.try_again = Tkinter.Label(self.window, image=self.try_text, bg="black", height=25, width=410)
+
+                    self.try_again.grid(row=4, column=0, columnspan=2, rowspan=15)
+                else:
+                    i = i + 1
+        self.window.after(1, self.other_scales)
 
     #     __    ________________ ____  _   __   __ __     __  ______    _____   __   __  __________   ____  __
     #    / /   / ____/ ___/ ___// __ \/ | / /  / // /    /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
