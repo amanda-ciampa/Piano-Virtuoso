@@ -4,6 +4,7 @@ Piano Virtuoso - Educational video game to teach piano lessons.
 Chords.py - Used to play Chords mini game on MainWindow.py
     > Initializes lists for each major & minor chord
     > Appends user input to list
+    > Generates a random major scale
 
 THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
     > Will NOT compile otherwise.
@@ -12,6 +13,7 @@ THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
 from PianoInput import PianoInput
 import pygame.midi
 import winsound
+import random
 
 class Chords:
     def __init__(self):
@@ -40,6 +42,9 @@ class Chords:
     def input_to_list(self, input):
         self.user_input.append(input)
         return self.user_input
+
+    def random_chord(self):
+        rand_int = random.randint(1, 14)
 
     def win_or_lose(self, user_input_notes, chord):
         i = 0  # Counter for list positions.
