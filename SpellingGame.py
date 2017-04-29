@@ -1,3 +1,16 @@
+""" Created by Amanda Ciampa, 2017 - Senior Thesis Project, Endicott College
+Piano Virtuoso - Educational video game to teach piano lessons.
+
+SpellingGame.py - Used to play Spelling Kee on MainWindow.py
+    > Initializes empty lists and variables
+    > Appends user input to empty list
+    > Generates a randomized word from the letters A-G
+    > Returns if user won or lost (method not used in MainWindow.py due to error with GUI passing)
+
+THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
+    > Will NOT compile otherwise.
+"""
+
 #    _____ ____  ________    __    _____   ________   _________    __  _________
 #   / ___// __ \/ ____/ /   / /   /  _/ | / / ____/  / ____/   |  /  |/  / ____/
 #   \__ \/ /_/ / __/ / /   / /    / //  |/ / / __   / / __/ /| | / /|_/ / __/

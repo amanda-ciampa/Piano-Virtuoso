@@ -1,3 +1,14 @@
+""" Created by Amanda Ciampa, 2017 - Senior Thesis Project, Endicott College
+Piano Virtuoso - Educational video game to teach piano lessons.
+
+Scales.py - Used to play Scales mini game on MainWindow.py
+    > Initializes lists for each major scale
+    > Appends user input to list
+
+THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
+    > Will NOT compile otherwise.
+"""
+
 from PianoInput import PianoInput
 import pygame.midi
 import winsound

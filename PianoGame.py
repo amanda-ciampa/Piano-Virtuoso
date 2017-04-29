@@ -1,4 +1,15 @@
-# from MainWindow import MainWindow
+""" Created by Amanda Ciampa, 2017 - Senior Thesis Project, Endicott College
+Piano Virtuoso - Educational video game to teach piano lessons.
+
+PianoGame.py - Command line version of Piano Virtuoso
+USED FOR TESTING PURPOSES ONLY
+    > Allows for MIDI controller input
+    > Command line game of Spelling Kee.
+
+THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
+    > Will NOT compile otherwise.
+ """
+
 from PianoInput import PianoInput
 from SpellingGame import SpellingGame
 from GuessTheNote import GuessTheNote

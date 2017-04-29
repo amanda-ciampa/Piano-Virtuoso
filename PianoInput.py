@@ -1,3 +1,20 @@
+""" Created by Amanda Ciampa, 2017 - Senior Thesis Project, Endicott College
+Piano Virtuoso - Educational video game to teach piano lessons.
+
+PianoInput.py - Used to read in input from MIDI controller
+    > Initializes pygame.midi
+        - MIDI controller device # is 1 if plugged in. Otherwise 0.
+        - Controls the input and output
+        - Chooses an instrument. Currently 110 - piano
+    > Detects which piano key is pressed on MIDI controller
+    > Outputs sound based on what key was pressed
+    > Converts the midi.read int to a string so users know what key they pressed instead of a number (i.e. A 5)
+    > Splits the converted midi.read into just a char. (i.e. A 5 will be A)
+
+THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
+    > Will NOT compile otherwise.
+"""
+
 #     ____  _______    _   ______     _____   ______  __  ________
 #    / __ \/  _/   |  / | / / __ \   /  _/ | / / __ \/ / / /_  __/
 #   / /_/ // // /| | /  |/ / / / /   / //  |/ / /_/ / / / / / /
