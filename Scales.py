@@ -12,16 +12,18 @@ THIS GAME MUST BE PLAYED USING A MIDI CONTROLLER!!!
 from PianoInput import PianoInput
 import pygame.midi
 import winsound
+import random
 
 class Scales:
     def __init__(self):
         self.user_input = []
+        self.current_scale = ""
         self.c_scale = ['c', 'd', 'e', 'f', 'g', 'a', 'b', 'c']
-        self.d_scale = ['d', 'e', 'f#', 'g#', 'a', 'b', 'c#', 'd']
+        self.d_scale = ['d', 'e', 'f#', 'g', 'a', 'b', 'c#', 'd']
         self.e_scale = ['e', 'f#', 'g#', 'a', 'b', 'c#', 'd#', 'e']
         self.f_scale = ['f', 'g', 'a', 'a#', 'c', 'd', 'e', 'f']
         self.g_scale = ['g', 'a', 'b', 'c', 'd', 'e', 'f#', 'g']
-        self.a_scale = ['a', 'b' 'c#', 'd', 'e', 'f#', 'g#', 'a']
+        self.a_scale = ['a', 'b', 'c#', 'd', 'e', 'f#', 'g#', 'a']
         self.b_scale = ['b', 'c#', 'd#', 'e', 'f#', 'g#', 'a#', 'b']
         self.chromatic = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c']
 
@@ -30,6 +32,22 @@ class Scales:
     def input_to_list(self, input):
         self.user_input.append(input)
         return self.user_input
+
+    def random_chord(self):
+        rand_int = random.randint(1, 8)
+
+        scales = {1:c_scale, 2:d_scale, 3:e_scale, 4:f_scale, 5:g_scale, 6:a_scale, 7:b_scale, 8:chromatic}
+
+        self.current_scale = scales[rand_int]
+        return self.current_scale
+
+    def random_chord_deab(self):
+        rand_int = random.randint(1, 4)
+
+        scales = {1:self.d_scale, 2:self.e_scale, 3:self.a_scale, 4:self.b_scale}
+
+        self.current_scale = scales[rand_int]
+        return scales[rand_int]
 
     def win_or_lose(self, user_input_notes, scale):
         i = 0  # Counter for list positions.
