@@ -17,9 +17,6 @@ class SpellingGame:
 
         self.isTrue = True
 
-    def word_split(self, word):
-        pass
-
     def input_to_list(self, input):
         self.user_input.append(input)
         return self.user_input
