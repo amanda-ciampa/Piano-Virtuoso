@@ -33,10 +33,10 @@ class Scales:
         self.user_input.append(input)
         return self.user_input
 
-    def random_chord(self):
+    def random_scale(self):
         rand_int = random.randint(1, 8)
 
-        scales = {1:c_scale, 2:d_scale, 3:e_scale, 4:f_scale, 5:g_scale, 6:a_scale, 7:b_scale, 8:chromatic}
+        scales = {1:self.c_scale, 2:self.d_scale, 3:self.e_scale, 4:self.f_scale, 5:self.g_scale, 6:self.a_scale, 7:self.b_scale, 8:self.chromatic}
 
         self.current_scale = scales[rand_int]
         return self.current_scale
