@@ -333,7 +333,8 @@ class MainWindow():
                 gen_str = ''.join(spelling.generated_word)
 
                 # CHecks for win condition
-                if self.l1c1_score >= 5:
+                if self.l1c1_score >= 10:
+                    #pygame.midi.quit()
                     self.spelling_word.destroy()
                     self.logo.destroy()
                     self.spell_text.destroy()
@@ -653,12 +654,12 @@ class MainWindow():
         # Displays GOOD JOB text.
         self.goodjobtxt = ImageTk.PhotoImage(Image.open("images/headers/lesson1g.png"))
         self.good_job = Tkinter.Label(self.window, bg="black", image=self.goodjobtxt, height=410, width=410)
-        self.good_job.grid(row=0, column=0, columnspan=5, rowspan=11)
+        self.good_job.grid(row=0, column=0, columnspan=3, rowspan=9)
 
         if self.l1c1_complete > 0 and self.l1c2_complete > 0:
             self.nextlesson = ImageTk.PhotoImage(Image.open("images/buttons/gtl2.png"))
             self.next_lesson_bttn = Tkinter.Button(self.window, image=self.nextlesson, command=self.l2_main_menu, bd=1, bg="black", height=25, width=200)
-            self.next_lesson_bttn.grid(row=9, column=0)
+            self.next_lesson_bttn.grid(row=6, column=1)
             
         # Otherwise, goes back to current lesson's main menu
         else:
@@ -668,7 +669,7 @@ class MainWindow():
                 self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl1c1.png"))
 
             self.try_button = Tkinter.Button(self.window, image=self.trybttn, command=self.main_menu, bd=1, bg="black", height=25, width=200)
-            self.try_button.grid(row=9, column=0)
+            self.try_button.grid(row=6, column=1)
 
     #     __    ________________ ____  _   __   ___      __  ______    _____   __   __  __________   ____  __
     #    / /   / ____/ ___/ ___// __ \/ | / /  |__ \    /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
@@ -1185,12 +1186,12 @@ class MainWindow():
         # Displays GOOD JOB text.
         self.goodjobtxt = ImageTk.PhotoImage(Image.open("images/headers/lesson2g.png"))
         self.good_job = Tkinter.Label(self.window, bg="black", image=self.goodjobtxt, height=410, width=410)
-        self.good_job.grid(row=0, column=0, columnspan=5, rowspan=11)
+        self.good_job.grid(row=0, column=0, columnspan=3, rowspan=9)
 
         if self.l2c1_complete > 0 and self.l2c2_complete > 0:
             self.nextlesson = ImageTk.PhotoImage(Image.open("images/buttons/gtl3.png"))
             self.next_lesson_bttn = Tkinter.Button(self.window, image=self.nextlesson, command=self.l3_main_menu, bd=1, bg="black", height=25, width=200)
-            self.next_lesson_bttn.grid(row=9, column=0)
+            self.next_lesson_bttn.grid(row=6, column=1)
             
         # Otherwise, goes back to current lesson's main menu
         else:
@@ -1200,7 +1201,7 @@ class MainWindow():
                 self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl2c1.png"))
 
             self.try_button = Tkinter.Button(self.window, image=self.trybttn, command=self.l2_main_menu, bd=1, bg="black", height=25, width=200)
-            self.try_button.grid(row=9, column=0)
+            self.try_button.grid(row=6, column=1)
 
     #     __    ________________ ____  _   __   _____    __  ______    _____   __   __  __________   ____  __
     #    / /   / ____/ ___/ ___// __ \/ | / /  |__  /   /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
@@ -1236,6 +1237,29 @@ class MainWindow():
         self.chapter1.grid(row=9, column=0)
         self.chapter2.grid(row=10, column=0)
         self.logo.grid(row=0, column=0)
+
+    def go_to_l4(self):
+        """ Checks what chapters the user completed. If only 1, goes back to main menu. Else, goes to next lesson. """
+
+        # Displays GOOD JOB text.
+        self.goodjobtxt = ImageTk.PhotoImage(Image.open("images/headers/lesson3g.png"))
+        self.good_job = Tkinter.Label(self.window, bg="black", image=self.goodjobtxt, height=410, width=410)
+        self.good_job.grid(row=0, column=0, columnspan=3, rowspan=9)
+
+        if self.l3c1_complete > 0 and self.l3c2_complete > 0:
+            self.nextlesson = ImageTk.PhotoImage(Image.open("images/buttons/gtl4.png"))
+            self.next_lesson_bttn = Tkinter.Button(self.window, image=self.nextlesson, command=self.l4_main_menu, bd=1, bg="black", height=25, width=200)
+            self.next_lesson_bttn.grid(row=6, column=1)
+            
+        # Otherwise, goes back to current lesson's main menu
+        else:
+            if self.l3c1_complete > 0: #If chapter 2 not complete, shows complete chapter 2
+                self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl3c2.png"))
+            elif self.l3c2_complete > 0: #Else, show to complete chapter 1
+                self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl3c1.png"))
+
+            self.try_button = Tkinter.Button(self.window, image=self.trybttn, command=self.l3_main_menu, bd=1, bg="black", height=25, width=200)
+            self.try_button.grid(row=6, column=1)
 
     #     __    ________________ ____  _   __   _____             ________  _____    ____  ________________     ___
     #    / /   / ____/ ___/ ___// __ \/ | / /  |__  /            / ____/ / / /   |  / __ \/_  __/ ____/ __ \   <  /
@@ -1903,29 +1927,6 @@ class MainWindow():
                     i = i + 1
         self.window.after(1, self.other_scales)
 
-    def go_to_l4(self):
-        """ Checks what chapters the user completed. If only 1, goes back to main menu. Else, goes to next lesson. """
-
-        # Displays GOOD JOB text.
-        self.goodjobtxt = ImageTk.PhotoImage(Image.open("images/headers/lesson3g.png"))
-        self.good_job = Tkinter.Label(self.window, bg="black", image=self.goodjobtxt, height=410, width=410)
-        self.good_job.grid(row=0, column=0, columnspan=5, rowspan=11)
-
-        if self.l3c1_complete > 0 and self.l3c2_complete > 0:
-            self.nextlesson = ImageTk.PhotoImage(Image.open("images/buttons/gtl4.png"))
-            self.next_lesson_bttn = Tkinter.Button(self.window, image=self.nextlesson, command=self.l4_main_menu, bd=1, bg="black", height=25, width=200)
-            self.next_lesson_bttn.grid(row=9, column=0)
-            
-        # Otherwise, goes back to current lesson's main menu
-        else:
-            if self.l3c1_complete > 0: #If chapter 2 not complete, shows complete chapter 2
-                self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl3c2.png"))
-            elif self.l3c2_complete > 0: #Else, show to complete chapter 1
-                self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl3c1.png"))
-
-            self.try_button = Tkinter.Button(self.window, image=self.trybttn, command=self.l3_main_menu, bd=1, bg="black", height=25, width=200)
-            self.try_button.grid(row=9, column=0)
-
     #     __    ________________ ____  _   __   __ __     __  ______    _____   __   __  __________   ____  __
     #    / /   / ____/ ___/ ___// __ \/ | / /  / // /    /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
     #   / /   / __/  \__ \\__ \/ / / /  |/ /  / // /_   / /|_/ / /| |  / //  |/ /  / /|_/ / __/ /  |/ / / / /
@@ -1960,6 +1961,35 @@ class MainWindow():
         self.chapter1.grid(row=9, column=0)
         self.chapter2.grid(row=10, column=0)
         self.logo.grid(row=0, column=0)
+
+    #     __   __ __     _       _______   __   __________  _   ______  __________________  _   __
+    #    / /  / // /    | |     / /  _/ | / /  / ____/ __ \/ | / / __ \/  _/_  __/  _/ __ \/ | / /
+    #   / /  / // /_    | | /| / // //  |/ /  / /   / / / /  |/ / / / // /  / /  / // / / /  |/ /
+    #  / /__/__  __/    | |/ |/ // // /|  /  / /___/ /_/ / /|  / /_/ // /  / / _/ // /_/ / /|  /
+    # /_____/ /_/       |__/|__/___/_/ |_/   \____/\____/_/ |_/_____/___/ /_/ /___/\____/_/ |_/
+
+    def go_to_l5(self):
+            """ Checks what chapters the user completed. If only 1, goes back to main menu. Else, goes to next lesson. """
+
+            # Displays GOOD JOB text.
+            self.goodjobtxt = ImageTk.PhotoImage(Image.open("images/headers/lesson4g.png"))
+            self.good_job = Tkinter.Label(self.window, bg="black", image=self.goodjobtxt, height=410, width=410)
+            self.good_job.grid(row=0, column=0, columnspan=3, rowspan=9)
+
+            if self.l4c1_complete > 0 and self.l4c2_complete > 0:
+                self.nextlesson = ImageTk.PhotoImage(Image.open("images/buttons/gtl5.png"))
+                self.next_lesson_bttn = Tkinter.Button(self.window, image=self.nextlesson, command=self.l5_main_menu, bd=1, bg="black", height=25, width=200)
+                self.next_lesson_bttn.grid(row=6, column=1)
+                
+            # Otherwise, goes back to current lesson's main menu
+            else:
+                if self.l4c1_complete > 0: #If chapter 2 not complete, shows complete chapter 2
+                    self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl4c2.png"))
+                elif self.l4c2_complete > 0: #Else, show to complete chapter 1
+                    self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl4c1.png"))
+
+                self.try_button = Tkinter.Button(self.window, image=self.trybttn, command=self.l4_main_menu, bd=1, bg="black", height=25, width=200)
+                self.try_button.grid(row=6, column=1)
 
     #     __    ________________ ____  _   __   __ __              ________  _____    ____  ________________     ___
     #    / /   / ____/ ___/ ___// __ \/ | / /  / // /             / ____/ / / /   |  / __ \/_  __/ ____/ __ \   <  /
@@ -2546,7 +2576,6 @@ class MainWindow():
 
                 # Correct input
                 if user_input_notes == self.list_chord:
-                #if chord.user_input == self.list_chord:
                     self.l4c2_score = self.l4c2_score + 1
                     print self.l4c2_score
 
@@ -2599,29 +2628,6 @@ class MainWindow():
                 else:
                     i = i + 1
         self.window.after(1, self.minor_chords)
-
-        def go_to_l5(self):
-            """ Checks what chapters the user completed. If only 1, goes back to main menu. Else, goes to next lesson. """
-
-            # Displays GOOD JOB text.
-            self.goodjobtxt = ImageTk.PhotoImage(Image.open("images/headers/lesson4g.png"))
-            self.good_job = Tkinter.Label(self.window, bg="black", image=self.goodjobtxt, height=410, width=410)
-            self.good_job.grid(row=0, column=0, columnspan=5, rowspan=11)
-
-            if self.l4c1_complete > 0 and self.l4c2_complete > 0:
-                self.nextlesson = ImageTk.PhotoImage(Image.open("images/buttons/gtl5.png"))
-                self.next_lesson_bttn = Tkinter.Button(self.window, image=self.nextlesson, command=self.l5_main_menu, bd=1, bg="black", height=25, width=200)
-                self.next_lesson_bttn.grid(row=9, column=0)
-                
-            # Otherwise, goes back to current lesson's main menu
-            else:
-                if self.l4c1_complete > 0: #If chapter 2 not complete, shows complete chapter 2
-                    self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl4c2.png"))
-                elif self.l4c2_complete > 0: #Else, show to complete chapter 1
-                    self.trybttn = ImageTk.PhotoImage(Image.open("images/buttons/tryl4c1.png"))
-
-                self.try_button = Tkinter.Button(self.window, image=self.trybttn, command=self.l4_main_menu, bd=1, bg="black", height=25, width=200)
-                self.try_button.grid(row=9, column=0)
 
     #     __    ________________ ____  _   __   ______   __  ______    _____   __   __  __________   ____  __
     #    / /   / ____/ ___/ ___// __ \/ | / /  / ____/  /  |/  /   |  /  _/ | / /  /  |/  / ____/ | / / / / /
@@ -2775,6 +2781,7 @@ class MainWindow():
                     self.try_again.grid(row=3, column=0)
                 else:
                     i = i + 1
+        self.window.after(1, self.spell)
 
     def guess(self):
         # Generates random note.
@@ -2911,6 +2918,7 @@ class MainWindow():
                     self.try_again.grid(row=4, column=0, columnspan=2, rowspan=15)
                 else:
                     i = i + 1
+        self.window.after(1, self.scales)
 
     def chords(self):
 
@@ -2997,6 +3005,7 @@ class MainWindow():
                     self.try_again.grid(row=4, column=0, columnspan=2, rowspan=15)
                 else:
                     i = i + 1
+        self.window.after(1, self.minor_chords)
 
     def minigame_mash(self):
         self.window_panel.destroy()
@@ -3009,7 +3018,6 @@ class MainWindow():
         game = {1:self.spell, 2:self.guess, 3:self.scales, 4:self.chords}
 
         if self.l5_score < 20:
-            #game[rand_int]
             game[rand_int]()
 
         else:
