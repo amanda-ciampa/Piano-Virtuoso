@@ -4,6 +4,8 @@ Piano Virtuoso is an education video game that teaches its players how to play p
 
 Piano Virtuoso is designed for all ages; anyone who wishes to learn how to play piano can! All that is needed is a MIDI controller to start a musical journey.
 
+This current version features 5 different lessons. With the exception of lesson 5, all lessons have 2 chapters which include a related mini game to help learn the concept within the chapter. Lesson 5 is a recap of what has been learned through lessons 1 - 4.
+
 ## Getting Started
 
 These instructions will help install and run this program. 
@@ -33,14 +35,26 @@ python MainWindow.py
 
 * [Python 2.7](https://www.python.org/) - Language used to code program
 
-* [pygame](http://www.pygame.org/hifi.html) & [Tkinter](https://wiki.python.org/moin/TkInter) - Libraries used for MIDI controller & GUI support
+* [pygame](http://www.pygame.org/hifi.html) & [Tkinter](https://wiki.python.org/moin/TkInter) - Libraries used for MIDI controller, sound & GUI support
 
 * [Sublime Text 3](https://www.sublimetext.com/) - Text editor & compiler used to test/run code
 
+## Known Bugs
+
+* If user hits two keys at the same time, input runs indefinietly rather than stopping when correct/incorrect input is entered.
+
+* On some lessons, certain graphics are coded to be hidden, however they are still visible. This happens randomly.
+
+* The first text on lesson 3 chapter 1's mini game blinks rapidly. This quickly goes away once the lesson is complete, however.
+
+* After completing lesson 3 chapter 2, the game immediately goes to the Lesson 4 main menu, instead of going to the 'Lesson complete' page. 
+
+* Lesson 5's mini game freezes whole program. FIXED 5/7/2017
+
 ## Authors
 
-* **Amanda Ciampa** - *Initial work* - [amanda-ciampa](https://github.com/amanda-ciampa)
+* **Amanda Ciampa** - *All work* - [amanda-ciampa](https://github.com/amanda-ciampa)
 
 ## Acknowledgments
 
-* All those who approached me saying they wish they knew how to play an instrument - where my idea for this project originally came from
+All those who approached me saying they wish they knew how to play an instrument - where my idea for this project originally came from
