@@ -43,7 +43,7 @@ python MainWindow.py
 
 * If user hits two keys at the same time, input runs indefinietly rather than stopping when correct/incorrect input is entered.
 
-* On some lessons, certain graphics are coded to be hidden, however they are still visible. This happens randomly.
+* On some lessons, certain graphics are coded to be hidden, however they are still visible. This happens randomly, but it is fixed once another mini game starts.
 
 * The first text on lesson 3 chapter 1's mini game blinks rapidly. This quickly goes away once the lesson is complete, however.
 
